@@ -1,4 +1,4 @@
-package SmartDevice.SmartDevice;
+package src.SmartDevice;
 
 public class SmartSpeaker extends SmartDevice{
     private int volume;
@@ -90,11 +90,10 @@ public class SmartSpeaker extends SmartDevice{
     }
 
 
-    public double consumo(){
+
+    public double consumoDiario(){
         return consumoDiario*volume/100;
     }
-
-
 
 
 

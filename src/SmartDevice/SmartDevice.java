@@ -1,4 +1,4 @@
-package SmartDevice.SmartDevice;
+package src.SmartDevice;
 
 import java.util.Objects;
 

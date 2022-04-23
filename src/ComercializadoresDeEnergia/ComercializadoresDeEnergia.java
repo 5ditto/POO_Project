@@ -1,4 +1,4 @@
-package SmartDevice.ComercializadoresDeEnergia;
+package src.ComercializadoresDeEnergia;
 
 public abstract class ComercializadoresDeEnergia {
 

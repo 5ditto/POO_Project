@@ -1,6 +1,6 @@
-package SmartDevice.ComercializadoresDeEnergia;
+package src.ComercializadoresDeEnergia;
 
-import SmartDevice.SmartDevice.SmartDevice;
+import src.SmartDevice.SmartDevice;
 
 public class EnergiaDependente extends ComercializadoresDeEnergia{
 

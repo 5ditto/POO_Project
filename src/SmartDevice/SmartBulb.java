@@ -1,4 +1,4 @@
-package SmartDevice.SmartDevice;
+package src.SmartDevice;
 
 public class SmartBulb extends SmartDevice {
 

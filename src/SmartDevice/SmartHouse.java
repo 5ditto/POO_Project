@@ -1,4 +1,6 @@
-package SmartDevice.SmartDevice;
+package src.SmartDevice;
+
+import src.ComercializadoresDeEnergia.ComercializadoresDeEnergia;
 
 import java.util.*;
 import java.util.stream.Collectors;
