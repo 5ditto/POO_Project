@@ -42,20 +42,14 @@ public class SmartBulb extends SmartDevice {
         setConsumoDiario(sb.getConsumoDiario());
     }
 
-    public SmartBulb(SmartDevice sd){
-        super(sd.getId(),sd.getState());
-        this.tonalidade = NEUTRAL;
-        this.dimensao = 0;
-        this.consumoDiario = 0;
-    }
-
     public boolean equals(Object o){
         if (o == this)
             return true;
         if ((o == null) || o.getClass()!= this.getClass())
             return false;
         SmartBulb l = (SmartBulb) o;
-        return (Objects.equals(l.tonalidade,this.tonalidade) && (l.dimensao == this.dimensao));
+        return (this.tonalidade==l.getTonalidade()) && (this.dimensao==l.getDimensao())
+                && (this.consumoDiario==l.getConsumoDiario()) && (super.equals(l));
     }
 
     public String toString(){
@@ -97,7 +91,8 @@ public class SmartBulb extends SmartDevice {
         this.consumoDiario = consumoDiario;
     }
 
-    public double consumo(){
+
+    public double consumoDiario(){
         if (this.tonalidade == 0) return consumoDiario*0.5;
         if (this.tonalidade == 1) return consumoDiario;
         else return consumoDiario*1.5;

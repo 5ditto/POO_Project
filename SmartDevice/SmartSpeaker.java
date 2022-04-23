@@ -71,7 +71,9 @@ public class SmartSpeaker extends SmartDevice{
         if((o == null) || o.getClass() != this.getClass())
             return false;
         SmartSpeaker c = (SmartSpeaker) o;
-        return ((c.volume == this.volume) && Objects.equals(c.marca,this.marca) && Objects.equals(c.estacaoRadio,this.estacaoRadio));
+        return (this.volume == c.volume) && (this.marca.equals(c.getMarca()))
+                && (this.estacaoRadio.equals(c.getEstacaoRadio())) && (this.consumoDiario==c.getConsumoDiario())
+                && (super.equals(c));
     }
 
     public String toString(){
@@ -88,6 +90,7 @@ public class SmartSpeaker extends SmartDevice{
     public SmartSpeaker clone(){
         return new SmartSpeaker(this);
     }
+
 
     public double consumo(){
         return consumoDiario*volume/100;

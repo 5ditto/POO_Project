@@ -50,7 +50,8 @@ public class SmartCamera extends SmartDevice {
         if((o == null) || (o.getClass() != this.getClass()))
             return false;
         SmartCamera c = (SmartCamera) o;
-        return ((c.resolX == this.resolX) && (c.resolY == this.resolY) && (c.tamanhoFicheiros == this.tamanhoFicheiros));
+        return (c.resolX == this.resolX) && (c.resolY == this.resolY)
+                && (c.tamanhoFicheiros == this.tamanhoFicheiros) && (super.equals(c));
     }
 
     public String toString(){
@@ -66,7 +67,8 @@ public class SmartCamera extends SmartDevice {
         return new SmartCamera(this);
     }
 
-    public double consumo(){
+
+    public double consumoDiario(){
         return tamanhoFicheiros*resolX*resolY/1000;
     }
 

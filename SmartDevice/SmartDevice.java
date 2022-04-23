@@ -2,12 +2,12 @@ package SmartDevice;
 
 import java.util.Objects;
 
-public class SmartDevice {
+public abstract class SmartDevice {
     private String id;
     private boolean state; // true = ligado; false = desligado
 
     public SmartDevice(){
-        this.id = "";
+        this.id = null;
         this.state = false;
     }
 
@@ -58,8 +58,8 @@ public class SmartDevice {
                 "}";
     }
 
-    @Override
-    public SmartDevice clone(){
-        return new SmartDevice(this);
-    }
+    public abstract SmartDevice clone();
+
+    public abstract double consumoDiario();
+
 }
