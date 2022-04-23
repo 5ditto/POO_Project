@@ -6,12 +6,22 @@ public class SmartSpeaker extends SmartDevice{
     private int volume;
     private String estacaoRadio;
     private String marca;
+    private int consumoDiario;
 
     public SmartSpeaker(){
         super();
         this.volume = 0;
         this.estacaoRadio = "";
         this.marca = "";
+        this.consumoDiario = 0;
+    }
+
+    public SmartSpeaker(String id){
+        super(id);
+        this.volume = 0;
+        this.estacaoRadio = "";
+        this.marca = "";
+        this.consumoDiario = 0;
     }
 
     public SmartSpeaker(SmartSpeaker ss){
@@ -20,6 +30,7 @@ public class SmartSpeaker extends SmartDevice{
         setVolume(ss.getVolume());
         setEstacaoRadio(ss.getEstacaoRadio());
         setMarca(ss.getMarca());
+        setConsumoDiario(ss.getConsumoDiario());
     }
 
     public int getVolume() {
@@ -46,6 +57,14 @@ public class SmartSpeaker extends SmartDevice{
         this.marca = marca;
     }
 
+    public int getConsumoDiario() {
+        return consumoDiario;
+    }
+
+    public void setConsumoDiario(int consumoDiario) {
+        this.consumoDiario = consumoDiario;
+    }
+
     public boolean equals(Object o){
         if(o == this)
             return true;
@@ -69,4 +88,14 @@ public class SmartSpeaker extends SmartDevice{
     public SmartSpeaker clone(){
         return new SmartSpeaker(this);
     }
+
+    public double consumo(){
+        return consumoDiario*volume/100;
+    }
+
+
+
+
+
+
 }

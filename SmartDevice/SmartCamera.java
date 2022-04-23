@@ -65,4 +65,12 @@ public class SmartCamera extends SmartDevice {
     public SmartCamera clone(){
         return new SmartCamera(this);
     }
+
+    public double consumo(){
+        return tamanhoFicheiros*resolX*resolY/1000;
+    }
+
+
+
+
 }
