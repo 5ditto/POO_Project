@@ -1,6 +1,8 @@
-package src.SmartDevice;
+package src;
 
 import src.ComercializadoresDeEnergia.ComercializadoresDeEnergia;
+import src.ComercializadoresDeEnergia.EnergiaIndependente;
+import src.SmartDevice.SmartDevice;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -8,15 +10,24 @@ import java.util.stream.Collectors;
 public class SmartHouse {
     private String name;
     private int NIF;
-    private Map<String,SmartDevice> devices;
+    private Map<String, SmartDevice> devices;
     private Map<String,List<String>> divisions;
-    private ComercializadoresDeEnergia comercializador;
+    private ComercializadoresDeEnergia energia;
 
     public SmartHouse(){
         this.name = "";
         this.NIF = 0;
         this.devices = new HashMap<>();
         this.divisions = new HashMap<>();
+        this.energia = new EnergiaIndependente();
+    }
+
+    public SmartHouse(String name, int NIF, Map<String,SmartDevice> devices, Map<String,List<String>> divisions, ComercializadoresDeEnergia energia){
+        this.name = name;
+        this.NIF = NIF;
+        this.devices = devices.entrySet().stream().collect(Collectors.toMap(Map.Entry::getKey, par -> par.getValue().clone()));
+        this.divisions = divisions.entrySet().stream().collect(Collectors.toMap(Map.Entry::getKey, par -> new ArrayList<>(par.getValue())));
+        this.energia = energia.clone();
     }
 
     public SmartHouse(SmartHouse sh){
@@ -24,6 +35,7 @@ public class SmartHouse {
         setNIF(sh.getNIF());
         setDevices(sh.getDevices());
         setDivisions(sh.getDivisions());
+        setEnergia(sh.getEnergia());
     }
 
     public String getName() {
@@ -58,6 +70,14 @@ public class SmartHouse {
     public void setDivisions(Map<String, List<String>> divisions) {
         this.divisions = new HashMap<>();
         divisions.forEach((key, value) -> this.divisions.put(key, new ArrayList<>(value)));
+    }
+
+    public ComercializadoresDeEnergia getEnergia() {
+        return energia;
+    }
+
+    public void setEnergia(ComercializadoresDeEnergia energia) {
+        this.energia = energia.clone();
     }
 
     public boolean equals(Object o){

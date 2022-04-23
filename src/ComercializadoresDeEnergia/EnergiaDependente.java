@@ -27,6 +27,10 @@ public class EnergiaDependente extends ComercializadoresDeEnergia{
         this.numeroDispositivos = comercializador.getNumeroDispositivos();
     }
 
+    public EnergiaDependente clone(){
+        return new EnergiaDependente(this);
+    }
+
     public int getDescontoMenor() {
         return descontoMenor;
     }

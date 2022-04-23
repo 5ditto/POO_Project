@@ -21,6 +21,10 @@ public class EnergiaIndependente extends ComercializadoresDeEnergia{
         this.desconto = comercializador.getDesconto();
     }
 
+    public EnergiaIndependente clone(){
+        return new EnergiaIndependente(this);
+    }
+
     public int getDesconto() {
         return desconto;
     }

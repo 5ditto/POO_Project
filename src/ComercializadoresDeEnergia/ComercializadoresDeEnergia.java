@@ -13,4 +13,6 @@ public abstract class ComercializadoresDeEnergia {
         return impostos;
     }
 
+    public abstract ComercializadoresDeEnergia clone();
+
 }
