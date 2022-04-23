@@ -8,6 +8,7 @@ public class SmartHouse {
     private int NIF;
     private Map<String,SmartDevice> devices;
     private Map<String,List<String>> divisions;
+    private ComercializadoresDeEnergia comercializador;
 
     public SmartHouse(){
         this.name = "";
@@ -15,13 +16,13 @@ public class SmartHouse {
         this.devices = new HashMap<>();
         this.divisions = new HashMap<>();
     }
+
     public SmartHouse(SmartHouse sh){
         setName(sh.getName());
         setNIF(sh.getNIF());
         setDevices(sh.getDevices());
         setDivisions(sh.getDivisions());
     }
-
 
     public String getName() {
         return name;
@@ -79,25 +80,19 @@ public class SmartHouse {
         return new SmartHouse(this);
     }
 
+
     public boolean existsDevice(String device){
         return this.devices.containsKey(device);
     }
 
-    public void addDevice(SmartDevice device){
+    public void addDevice(SmartDevice device, String division){
         this.devices.put(device.getId(),device.clone());
+        addDivision(division);
+        this.divisions.get(division).add(device.getId());
     }
 
-    public SmartDevice getDevice(String device){
-        if(existsDevice(device)){
-            return this.devices.get(device).clone();
-        }
-        else{
-            return null;
-        }
-    }
-
-    public void setAllState(boolean state){
-        this.devices.values().forEach(k -> k.setState(state));
+    public SmartDevice getDevice(String device) {
+        return this.devices.get(device).clone();
     }
 
     public boolean existsDivision (String division){
@@ -109,13 +104,44 @@ public class SmartHouse {
     }
 
     public void addToDivision(String division, String device){
-        addDivision(division);
-        this.divisions.get(division).add(device);
+        if (existsDevice(device)){
+            addDivision(division);
+            this.divisions.get(division).add(device);
+        }
     }
 
-    public boolean deviceIndivision(String division, String device){
+    public boolean deviceInDivision(String division, String device){
         return (this.divisions.get(division).contains(device));
     }
+
+    public void turnOnAll(boolean state){
+        this.devices.values().forEach(k -> k.setState(true));
+    }
+
+    public void turnOffAll(boolean state){
+        this.devices.values().forEach(k -> k.setState(false));
+    }
+
+    public void turnOnAllDivision(String division){
+        this.devices.values().stream().filter(d->deviceInDivision(division,d.getId())).forEach(k -> k.setState(true));
+    }
+
+    public void turnOffAllDivision(String division){
+        this.devices.values().stream().filter(d->deviceInDivision(division,d.getId())).forEach(k -> k.setState(false));
+    }
+
+    public void turnOnDevice(String id){
+        this.devices.get(id).setState(true);
+    }
+
+    public void turnOffDevice(String id){
+        this.devices.get(id).setState(false);
+    }
+
+
+
+
+
 
 
 }

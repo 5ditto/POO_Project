@@ -1,17 +1,15 @@
 package SmartDevice;
 
-import java.util.Objects;
-
 public class SmartCamera extends SmartDevice {
     private int resolX;
     private int resolY;
-    private double tamanhaficguardados;
+    private double tamanhoFicheiros;
 
     public SmartCamera(){
         super();
         this.resolX = 0;
         this.resolY = 0;
-        this.tamanhaficguardados = 0;
+        this.tamanhoFicheiros = 0;
     }
 
     public SmartCamera(SmartCamera sc){
@@ -19,7 +17,7 @@ public class SmartCamera extends SmartDevice {
         setState(sc.getState());
         setResolX(sc.getResolX());
         setResolY(sc.getResolY());
-        setTamanhaficguardados(sc.getTamanhaficguardados());
+        setTamanhoFicheiros(sc.getTamanhoFicheiros());
     }
 
     public int getResolX() {
@@ -38,12 +36,12 @@ public class SmartCamera extends SmartDevice {
         this.resolY = resolY;
     }
 
-    public double getTamanhaficguardados() {
-        return tamanhaficguardados;
+    public double getTamanhoFicheiros() {
+        return tamanhoFicheiros;
     }
 
-    public void setTamanhaficguardados(double tamanhaficguardados) {
-        this.tamanhaficguardados = tamanhaficguardados;
+    public void setTamanhoFicheiros(double tamanhoFicheiros) {
+        this.tamanhoFicheiros = tamanhoFicheiros;
     }
 
     public boolean equals(Object o){
@@ -52,7 +50,7 @@ public class SmartCamera extends SmartDevice {
         if((o == null) || (o.getClass() != this.getClass()))
             return false;
         SmartCamera c = (SmartCamera) o;
-        return ((c.resolX == this.resolX) && (c.resolY == this.resolY) && (c.tamanhaficguardados == this.tamanhaficguardados));
+        return ((c.resolX == this.resolX) && (c.resolY == this.resolY) && (c.tamanhoFicheiros == this.tamanhoFicheiros));
     }
 
     public String toString(){
@@ -60,7 +58,7 @@ public class SmartCamera extends SmartDevice {
                 "ID: " + super.getId() + '\n' +
                 "State: " + super.getState() + '\n' +
                 "Resolução: " + resolX + "x" + resolY + '\n' +
-                "Tamanho dos ficheiros guardados : " + tamanhaficguardados +
+                "Tamanho dos ficheiros guardados : " + tamanhoFicheiros +
                 "}";
     }
 
