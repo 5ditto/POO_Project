@@ -7,7 +7,7 @@ public class SmartDevice {
     private boolean state; // true = ligado; false = desligado
 
     public SmartDevice(){
-        this.id = "";
+        this.id = null;
         this.state = false;
     }
 
