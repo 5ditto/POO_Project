@@ -1,6 +1,4 @@
-package SmartDevice;
-
-import java.util.Objects;
+package SmartDevice.SmartDevice;
 
 public class SmartBulb extends SmartDevice {
 

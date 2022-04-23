@@ -1,4 +1,4 @@
-package SmartDevice;
+package SmartDevice.SmartDevice;
 
 public class SmartCamera extends SmartDevice {
     private int resolX;
