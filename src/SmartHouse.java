@@ -1,7 +1,6 @@
 package src;
 
 import src.ComercializadoresDeEnergia.ComercializadoresDeEnergia;
-import src.ComercializadoresDeEnergia.EnergiaIndependente;
 import src.SmartDevice.SmartDevice;
 
 import java.util.*;
@@ -19,7 +18,7 @@ public class SmartHouse {
         this.NIF = 0;
         this.devices = new HashMap<>();
         this.divisions = new HashMap<>();
-        this.energia = new EnergiaIndependente();
+        this.energia = new ComercializadoresDeEnergia();
     }
 
     public SmartHouse(String name, int NIF, Map<String,SmartDevice> devices, Map<String,List<String>> divisions, ComercializadoresDeEnergia energia){
@@ -160,6 +159,12 @@ public class SmartHouse {
         this.devices.get(id).setState(false);
     }
 
+    public double consumoTotalCasaDiario(){
+        return  this.devices.values().stream()
+                                     .filter(SmartDevice::getState)
+                                     .mapToDouble(s->energia.precoDiaPorDispositivo(s,devices.size()))
+                                     .sum();
+    }
 
 
 

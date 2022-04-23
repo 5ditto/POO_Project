@@ -90,7 +90,7 @@ public class SmartSpeaker extends SmartDevice{
     }
 
 
-
+@Override
     public double consumoDiario(){
         return consumoDiario*volume/100;
     }

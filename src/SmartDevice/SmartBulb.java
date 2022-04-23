@@ -89,7 +89,7 @@ public class SmartBulb extends SmartDevice {
         this.consumoDiario = consumoDiario;
     }
 
-
+@Override
     public double consumoDiario(){
         if (this.tonalidade == 0) return consumoDiario*0.5;
         if (this.tonalidade == 1) return consumoDiario;
