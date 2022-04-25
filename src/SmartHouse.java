@@ -7,6 +7,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class SmartHouse {
+    private String morada;
     private String name;
     private int NIF;
     private Map<String, SmartDevice> devices;
@@ -14,6 +15,7 @@ public class SmartHouse {
     private ComercializadoresDeEnergia energia;
 
     public SmartHouse(){
+        this.morada = "";
         this.name = "";
         this.NIF = 0;
         this.devices = new HashMap<>();
@@ -21,7 +23,8 @@ public class SmartHouse {
         this.energia = new ComercializadoresDeEnergia();
     }
 
-    public SmartHouse(String name, int NIF, Map<String,SmartDevice> devices, Map<String,List<String>> divisions, ComercializadoresDeEnergia energia){
+    public SmartHouse(String morada, String name, int NIF, Map<String,SmartDevice> devices, Map<String,List<String>> divisions, ComercializadoresDeEnergia energia){
+        this.morada = morada;
         this.name = name;
         this.NIF = NIF;
         this.devices = devices.entrySet().stream().collect(Collectors.toMap(Map.Entry::getKey, par -> par.getValue().clone()));
@@ -30,11 +33,20 @@ public class SmartHouse {
     }
 
     public SmartHouse(SmartHouse sh){
+        setMorada(sh.getMorada());
         setName(sh.getName());
         setNIF(sh.getNIF());
         setDevices(sh.getDevices());
         setDivisions(sh.getDivisions());
         setEnergia(sh.getEnergia());
+    }
+
+    public String getMorada() {
+        return morada;
+    }
+
+    public void setMorada(String morada) {
+        this.morada = morada;
     }
 
     public String getName() {
@@ -85,11 +97,12 @@ public class SmartHouse {
         if((o == null) || (this.getClass() != o.getClass()))
             return false;
         SmartHouse sh = (SmartHouse) o;
-        return (Objects.equals(name, sh.name) && (NIF == sh.NIF) && Objects.equals(devices, sh.devices) && Objects.equals(divisions,sh.divisions));
+        return (Objects.equals(morada,sh.morada) && Objects.equals(name, sh.name) && (NIF == sh.NIF) && Objects.equals(devices, sh.devices) && Objects.equals(divisions,sh.divisions));
     }
 
     public String toString(){
         return "SmartHouse{\n" +
+                "Adress: " + morada + '\n' +
                 "Owner Name: " + name + '\n' +
                 "Owner NIF: " + NIF + '\n' +
                 "Devices: " + devices + '\n' +
