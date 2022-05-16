@@ -1,4 +1,4 @@
-package src.SmartDevice;
+package src.Model.SmartDevice;
 
 public class SmartSpeaker extends SmartDevice{
     private int volume;

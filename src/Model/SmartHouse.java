@@ -1,7 +1,7 @@
-package src;
+package src.Model;
 
-import src.ComercializadoresDeEnergia.ComercializadoresDeEnergia;
-import src.SmartDevice.SmartDevice;
+import src.Model.ComercializadoresDeEnergia.ComercializadoresDeEnergia;
+import src.Model.SmartDevice.SmartDevice;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -102,7 +102,7 @@ public class SmartHouse {
 
     public String toString(){
         return "SmartHouse{\n" +
-                "Adress: " + morada + '\n' +
+                "Address: " + morada + '\n' +
                 "Owner Name: " + name + '\n' +
                 "Owner NIF: " + NIF + '\n' +
                 "Devices: " + devices + '\n' +
@@ -148,11 +148,11 @@ public class SmartHouse {
         return (this.divisions.get(division).contains(device));
     }
 
-    public void turnOnAll(boolean state){
+    public void turnOnAll(){
         this.devices.values().forEach(k -> k.setState(true));
     }
 
-    public void turnOffAll(boolean state){
+    public void turnOffAll(){
         this.devices.values().forEach(k -> k.setState(false));
     }
 

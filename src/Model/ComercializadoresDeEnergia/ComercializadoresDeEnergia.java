@@ -1,7 +1,7 @@
-package src.ComercializadoresDeEnergia;
+package src.Model.ComercializadoresDeEnergia;
 
 
-import src.SmartDevice.SmartDevice;
+import src.Model.SmartDevice.SmartDevice;
 
 public class ComercializadoresDeEnergia {
 

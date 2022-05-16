@@ -1,7 +1,7 @@
 package src.Files;
 
-import src.GestorComunidade;
-import src.SmartHouse;
+import src.Model.GestorComunidade;
+import src.Model.SmartHouse;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -12,9 +12,11 @@ import java.util.List;
 
 public class Parser {
 
-    public void parse(GestorComunidade gc) throws FileInvalidException{
+    public void parse(GestorComunidade gc) {
 
     }
+
+
 
     public static List<String> readFile(String fileName){
         List<String> lines;
