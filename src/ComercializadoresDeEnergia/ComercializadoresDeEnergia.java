@@ -1,5 +1,6 @@
 package src.ComercializadoresDeEnergia;
 
+
 import src.SmartDevice.SmartDevice;
 
 public class ComercializadoresDeEnergia {

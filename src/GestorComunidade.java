@@ -1,8 +1,4 @@
 package src;
-
-import src.SmartDevice.SmartBulb;
-import src.SmartDevice.SmartDevice;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -44,7 +40,7 @@ public class GestorComunidade {
 
 
     public Map<Integer,Double> consumidoPorCasa(int numeroDias){
-        return casas.values().stream().collect(Collectors.toMap(SmartHouse::getNIF , c-> c.consumoTotalCasaDiario()*numeroDias);
+        return casas.values().stream().collect(Collectors.toMap(SmartHouse::getNIF , c-> c.consumoTotalCasaDiario()*numeroDias));
     }
 
 
