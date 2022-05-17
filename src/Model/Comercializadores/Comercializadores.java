@@ -1,9 +1,9 @@
-package src.Model.ComercializadoresDeEnergia;
+package src.Model.Comercializadores;
 
 
 import src.Model.SmartDevice.SmartDevice;
 
-public class ComercializadoresDeEnergia {
+public class Comercializadores {
 
     private static final double valorBase = 0.07;
     private static final double impostos = 0.06;
@@ -11,21 +11,21 @@ public class ComercializadoresDeEnergia {
     private int descontoMenor, descontoMaior, numeroDispositivos;
     private boolean descontoNumero;
 
-    public ComercializadoresDeEnergia(){
+    public Comercializadores(){
         descontoMenor = 1;
         descontoMaior = 1;
         numeroDispositivos = 0;
         descontoNumero = false;
     }
 
-    public ComercializadoresDeEnergia(int descontoMenor, int descontoMaior, int numeroDispositivos, boolean descontoNumero){
+    public Comercializadores(int descontoMenor, int descontoMaior, int numeroDispositivos, boolean descontoNumero){
         this.descontoMenor = descontoMenor;
         this.descontoMaior = descontoMaior;
         this.numeroDispositivos = numeroDispositivos;
         this.descontoNumero = descontoNumero;
     }
 
-    public ComercializadoresDeEnergia(ComercializadoresDeEnergia comercializador) {
+    public Comercializadores(Comercializadores comercializador) {
         this.descontoMenor = comercializador.getDescontoMenor();
         this.descontoMaior = comercializador.getDescontoMaior();
         this.numeroDispositivos = comercializador.getNumeroDispositivos();
@@ -40,8 +40,8 @@ public class ComercializadoresDeEnergia {
         return impostos;
     }
 
-    public ComercializadoresDeEnergia clone(){
-        return new ComercializadoresDeEnergia(this);
+    public Comercializadores clone(){
+        return new Comercializadores(this);
     }
 
     public int getDescontoMenor() {

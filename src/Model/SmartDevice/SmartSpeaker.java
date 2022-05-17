@@ -1,6 +1,10 @@
 package src.Model.SmartDevice;
 
 public class SmartSpeaker extends SmartDevice{
+
+
+    private static final int custo_instalacao = 3;
+
     private int volume;
     private String estacaoRadio;
     private String marca;
@@ -14,16 +18,9 @@ public class SmartSpeaker extends SmartDevice{
         this.consumoDiario = 0;
     }
 
-    public SmartSpeaker(String id){
-        super(id);
-        this.volume = 0;
-        this.estacaoRadio = "";
-        this.marca = "";
-        this.consumoDiario = 0;
-    }
+    public SmartSpeaker()
 
     public SmartSpeaker(SmartSpeaker ss){
-        setId(ss.getId());
         setState(ss.getState());
         setVolume(ss.getVolume());
         setEstacaoRadio(ss.getEstacaoRadio());
@@ -76,7 +73,7 @@ public class SmartSpeaker extends SmartDevice{
 
     public String toString(){
         return "SmartSpeaker{\n"+
-                "ID: " + super.getId() + '\n' +
+                "ID: " + '\n' +
                 "State: " + super.getState() + '\n' +
                 "Volume: " + volume + '\n' +
                 "Estação de Rádio Atual: " + estacaoRadio + '\n' +

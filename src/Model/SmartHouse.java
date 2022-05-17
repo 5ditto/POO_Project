@@ -1,6 +1,6 @@
 package src.Model;
 
-import src.Model.ComercializadoresDeEnergia.ComercializadoresDeEnergia;
+import src.Model.Comercializadores.Comercializadores;
 import src.Model.SmartDevice.SmartDevice;
 
 import java.util.*;
@@ -12,7 +12,7 @@ public class SmartHouse {
     private int NIF;
     private Map<String, SmartDevice> devices;
     private Map<String,List<String>> divisions;
-    private ComercializadoresDeEnergia energia;
+    private Comercializadores energia;
 
     public SmartHouse(){
         this.morada = "";
@@ -20,10 +20,10 @@ public class SmartHouse {
         this.NIF = 0;
         this.devices = new HashMap<>();
         this.divisions = new HashMap<>();
-        this.energia = new ComercializadoresDeEnergia();
+        this.energia = new Comercializadores();
     }
 
-    public SmartHouse(String morada, String name, int NIF, Map<String,SmartDevice> devices, Map<String,List<String>> divisions, ComercializadoresDeEnergia energia){
+    public SmartHouse(String morada, String name, int NIF, Map<String,SmartDevice> devices, Map<String,List<String>> divisions, Comercializadores energia){
         this.morada = morada;
         this.name = name;
         this.NIF = NIF;
@@ -83,11 +83,11 @@ public class SmartHouse {
         divisions.forEach((key, value) -> this.divisions.put(key, new ArrayList<>(value)));
     }
 
-    public ComercializadoresDeEnergia getEnergia() {
+    public Comercializadores getEnergia() {
         return energia;
     }
 
-    public void setEnergia(ComercializadoresDeEnergia energia) {
+    public void setEnergia(Comercializadores energia) {
         this.energia = energia.clone();
     }
 
@@ -120,7 +120,7 @@ public class SmartHouse {
     }
 
     public void addDevice(SmartDevice device, String division){
-        this.devices.put(device.getId(),device.clone());
+        this.devices.put(device.clone());
         addDivision(division);
         this.divisions.get(division).add(device.getId());
     }

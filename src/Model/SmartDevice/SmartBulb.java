@@ -5,7 +5,7 @@ public class SmartBulb extends SmartDevice {
     private static final int COLD = 0;
     private static final int NEUTRAL = 1;
     private static final int WARM = 2;
-
+    private static final int custo_instalacao = 1;
 
     private int tonalidade;
     private double dimensao;
@@ -19,18 +19,11 @@ public class SmartBulb extends SmartDevice {
         this.consumoDiario = 0;
     }
 
-    public SmartBulb(String id){
-        super(id);
-        this.tonalidade = NEUTRAL;
-        this.dimensao = 0;
-        this.consumoDiario = 0;
-    }
-
-    public SmartBulb(String id, boolean state){
-        super(id, state);
-        this.tonalidade = NEUTRAL;
-        this.dimensao = 0;
-        this.consumoDiario = 0;
+    public SmartBulb(int tonalidade, double dimensao, int consumoDiario){
+        super();
+        this.tonalidade = tonalidade;
+        this.dimensao = dimensao;
+        this.consumoDiario = consumoDiario;
     }
 
     public SmartBulb(SmartBulb sb){
@@ -43,19 +36,20 @@ public class SmartBulb extends SmartDevice {
     public boolean equals(Object o){
         if (o == this)
             return true;
-        if ((o == null) || o.getClass()!= this.getClass())
+        if (!super.equals(o)) return false;
+        if (o.getClass()!= this.getClass())
             return false;
         SmartBulb l = (SmartBulb) o;
         return (this.tonalidade==l.getTonalidade()) && (this.dimensao==l.getDimensao())
-                && (this.consumoDiario==l.getConsumoDiario()) && (super.equals(l));
+                && (this.consumoDiario==l.getConsumoDiario());
     }
 
     public String toString(){
         return "SmartBulb{ \n" +
-                "ID: " + super.getId() + '\n' +
-                "State: " + super.getState() + '\n' +
+                "Estado: " + super.getState() + '\n' +
                 "Tonalidade"  + tonalidade + '\n' +
                 "Dimensão: " + dimensao + '\n' +
+                super.toString() +
                 "}";
     }
 
@@ -70,6 +64,12 @@ public class SmartBulb extends SmartDevice {
     public void setTonalidade(int tonalidade) {
         if (tonalidade>=WARM) this.tonalidade = WARM;
         else if (tonalidade<=COLD) this.tonalidade = COLD;
+        else this.tonalidade = NEUTRAL;
+    }
+
+    public void setTonalidade(String tonalidade){
+        if (tonalidade.equals("WARM")) this.tonalidade = WARM;
+        else if (tonalidade.equals("COLD")) this.tonalidade = COLD;
         else this.tonalidade = NEUTRAL;
     }
 
@@ -91,11 +91,9 @@ public class SmartBulb extends SmartDevice {
 
 @Override
     public double consumoDiario(){
-        if (this.tonalidade == 0) return consumoDiario*0.5;
-        if (this.tonalidade == 1) return consumoDiario;
+        if (this.tonalidade == COLD) return consumoDiario*0.5;
+        if (this.tonalidade == NEUTRAL) return consumoDiario;
         else return consumoDiario*1.5;
     }
-
-
 
 }

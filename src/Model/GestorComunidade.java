@@ -38,6 +38,8 @@ public class GestorComunidade {
         }
     }
 
+    /*
+
 
     public Map<Integer,Double> consumidoPorCasa(int numeroDias){
         return casas.values().stream().collect(Collectors.toMap(SmartHouse::getNIF , c-> c.consumoTotalCasaDiario()*numeroDias));
@@ -46,6 +48,8 @@ public class GestorComunidade {
 
 
 
+
+     */
 
 
 

@@ -1,6 +1,10 @@
 package src.Model.SmartDevice;
 
 public class SmartCamera extends SmartDevice {
+
+
+    private static final int custo_instalacao = 5;
+
     private int resolX;
     private int resolY;
     private double tamanhoFicheiros;
@@ -13,7 +17,6 @@ public class SmartCamera extends SmartDevice {
     }
 
     public SmartCamera(SmartCamera sc){
-        setId(sc.getId());
         setState(sc.getState());
         setResolX(sc.getResolX());
         setResolY(sc.getResolY());
@@ -56,7 +59,7 @@ public class SmartCamera extends SmartDevice {
 
     public String toString(){
         return "SmartCamera{\n" +
-                "ID: " + super.getId() + '\n' +
+                "ID: "  + '\n' +
                 "State: " + super.getState() + '\n' +
                 "Resolução: " + resolX + "x" + resolY + '\n' +
                 "Tamanho dos ficheiros guardados : " + tamanhoFicheiros +
