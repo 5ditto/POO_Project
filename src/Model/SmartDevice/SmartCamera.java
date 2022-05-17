@@ -1,6 +1,6 @@
 package src.Model.SmartDevice;
 
-public class SmartCamera extends SmartDevice {
+public class SmartCamera extends SmartDevice{
 
 
     private static final int custo_instalacao = 5;
@@ -16,11 +16,39 @@ public class SmartCamera extends SmartDevice {
         this.tamanhoFicheiros = 0;
     }
 
+    public SmartCamera (int resolX, int resolY, int tamanhoFicheiros){
+        this.resolX = resolX;
+        this.resolY = resolY;
+        this.tamanhoFicheiros = tamanhoFicheiros;
+    }
+
     public SmartCamera(SmartCamera sc){
-        setState(sc.getState());
+        super(sc.getId(),sc.getState());
         setResolX(sc.getResolX());
         setResolY(sc.getResolY());
         setTamanhoFicheiros(sc.getTamanhoFicheiros());
+    }
+
+    public boolean equals(Object o){
+        if(o == this)
+            return true;
+        if((o == null) || (o.getClass() != this.getClass()))
+            return false;
+        SmartCamera c = (SmartCamera) o;
+        return (c.resolX == this.resolX) && (c.resolY == this.resolY)
+                && (c.tamanhoFicheiros == this.tamanhoFicheiros) && (super.equals(o));
+    }
+
+    public String toString(){
+        return "SmartCamera{\n" +
+                "Resolução: " + resolX + "x" + resolY + '\n' +
+                "Tamanho dos ficheiros guardados : " + tamanhoFicheiros +
+                super.toString() +
+                "}";
+    }
+
+    public SmartCamera clone(){
+        return new SmartCamera(this);
     }
 
     public int getResolX() {
@@ -47,35 +75,11 @@ public class SmartCamera extends SmartDevice {
         this.tamanhoFicheiros = tamanhoFicheiros;
     }
 
-    public boolean equals(Object o){
-        if(o == this)
-            return true;
-        if((o == null) || (o.getClass() != this.getClass()))
-            return false;
-        SmartCamera c = (SmartCamera) o;
-        return (c.resolX == this.resolX) && (c.resolY == this.resolY)
-                && (c.tamanhoFicheiros == this.tamanhoFicheiros) && (super.equals(c));
-    }
 
-    public String toString(){
-        return "SmartCamera{\n" +
-                "ID: "  + '\n' +
-                "State: " + super.getState() + '\n' +
-                "Resolução: " + resolX + "x" + resolY + '\n' +
-                "Tamanho dos ficheiros guardados : " + tamanhoFicheiros +
-                "}";
-    }
-
-    public SmartCamera clone(){
-        return new SmartCamera(this);
-    }
 
 @Override
     public double consumoDiario(){
         return tamanhoFicheiros*resolX*resolY/1000;
     }
-
-
-
 
 }

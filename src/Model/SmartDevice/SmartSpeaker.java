@@ -18,14 +18,44 @@ public class SmartSpeaker extends SmartDevice{
         this.consumoDiario = 0;
     }
 
-    public SmartSpeaker()
-
     public SmartSpeaker(SmartSpeaker ss){
-        setState(ss.getState());
-        setVolume(ss.getVolume());
+        super(ss.getId(),ss.getState());
         setEstacaoRadio(ss.getEstacaoRadio());
         setMarca(ss.getMarca());
         setConsumoDiario(ss.getConsumoDiario());
+    }
+
+    public SmartSpeaker(int volume, String estacaoRadio, String marca, int consumoDiario){
+        super();
+        this.volume = volume;
+        this.estacaoRadio = estacaoRadio;
+        this.marca = marca;
+        this.consumoDiario = consumoDiario;
+    }
+
+    public boolean equals(Object o){
+        if(o == this)
+            return true;
+        if((o == null) || o.getClass() != this.getClass())
+            return false;
+        SmartSpeaker c = (SmartSpeaker) o;
+        return (this.volume == c.volume) && (this.marca.equals(c.getMarca()))
+                && (this.estacaoRadio.equals(c.getEstacaoRadio())) && (this.consumoDiario==c.getConsumoDiario())
+                && (super.equals(o));
+    }
+
+    public String toString(){
+        return "SmartSpeaker{\n"+
+                "Volume: " + volume + '\n' +
+                "Estação de Rádio Atual: " + estacaoRadio + '\n' +
+                "Marca: "+ marca + '\n' +
+                super.toString() +
+                "}";
+
+    }
+
+    public SmartSpeaker clone(){
+        return new SmartSpeaker(this);
     }
 
     public int getVolume() {
@@ -60,39 +90,10 @@ public class SmartSpeaker extends SmartDevice{
         this.consumoDiario = consumoDiario;
     }
 
-    public boolean equals(Object o){
-        if(o == this)
-            return true;
-        if((o == null) || o.getClass() != this.getClass())
-            return false;
-        SmartSpeaker c = (SmartSpeaker) o;
-        return (this.volume == c.volume) && (this.marca.equals(c.getMarca()))
-                && (this.estacaoRadio.equals(c.getEstacaoRadio())) && (this.consumoDiario==c.getConsumoDiario())
-                && (super.equals(c));
-    }
-
-    public String toString(){
-        return "SmartSpeaker{\n"+
-                "ID: " + '\n' +
-                "State: " + super.getState() + '\n' +
-                "Volume: " + volume + '\n' +
-                "Estação de Rádio Atual: " + estacaoRadio + '\n' +
-                "Marca: "+ marca + '\n' +
-                "}";
-
-    }
-
-    public SmartSpeaker clone(){
-        return new SmartSpeaker(this);
-    }
-
 
 @Override
     public double consumoDiario(){
         return consumoDiario*volume/100;
     }
-
-
-
 
 }

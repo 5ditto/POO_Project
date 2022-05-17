@@ -1,18 +1,18 @@
 package src.Model.SmartDevice;
 
 import java.util.Objects;
-import java.lang.Object
+import java.util.UUID;
 
 public abstract class SmartDevice {
-    private String id;
+    private UUID id;
     private boolean state; // true = ligado; false = desligado
 
     public SmartDevice(){
-        this.id
+        this.id = UUID.randomUUID();
         this.state = false;
     }
 
-    public SmartDevice(String id, boolean state){
+    public SmartDevice(UUID id, boolean state){
         this.id = id;
         this.state = state;
     }
@@ -22,11 +22,11 @@ public abstract class SmartDevice {
         setState(device.getState());
     }
 
-    public String getId(){
+    public UUID getId(){
         return id;
     }
 
-    public void setId(String id){
+    public void setId(UUID id){
         this.id = id;
     }
 
@@ -48,7 +48,7 @@ public abstract class SmartDevice {
     }
 
     public String toString(){
-        return "Id: " + state + '\n' +
+        return "Id: " + id + '\n' +
                "State: " + state + '\n';
     }
 

@@ -1,6 +1,6 @@
 package src.Model.SmartDevice;
 
-public class SmartBulb extends SmartDevice {
+public class SmartBulb extends SmartDevice{
 
     private static final int COLD = 0;
     private static final int NEUTRAL = 1;
@@ -41,11 +41,11 @@ public class SmartBulb extends SmartDevice {
             return false;
         SmartBulb l = (SmartBulb) o;
         return (this.tonalidade==l.getTonalidade()) && (this.dimensao==l.getDimensao())
-                && (this.consumoDiario==l.getConsumoDiario());
+                && (this.consumoDiario==l.getConsumoDiario()) && (super.equals(o));
     }
 
     public String toString(){
-        return "SmartBulb{ \n" +
+        return "SmartBulb{\n" +
                 "Estado: " + super.getState() + '\n' +
                 "Tonalidade"  + tonalidade + '\n' +
                 "Dimensão: " + dimensao + '\n' +
