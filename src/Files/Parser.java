@@ -1,7 +1,6 @@
 package src.Files;
 
-import src.Model.GestorComunidade;
-import src.Model.SmartHouse;
+import src.Model.Casas.GestorComunidade;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;

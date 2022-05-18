@@ -1,6 +1,5 @@
 package src.Model.Comercializadores;
 
-
 import src.Model.SmartDevice.SmartDevice;
 
 public class Comercializadores {

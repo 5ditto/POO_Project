@@ -2,10 +2,9 @@ package src;
 
 
 import src.Controller.Interpretador;
-import src.Files.FileInvalidException;
 import src.Files.Parser;
-import src.Model.*;
-import src.view.ApresentacaoMain;
+import src.Model.Casas.GestorComunidade;
+import src.View.ApresentacaoMain;
 
 public class GestaoConsumo {
     public static void main(String[] args){

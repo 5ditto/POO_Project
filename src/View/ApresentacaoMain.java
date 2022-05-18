@@ -1,8 +1,6 @@
-package src.view;
+package src.View;
 
-import src.Model.SmartHouse;
-
-import java.util.Map;
+import src.Model.Casas.SmartHouse;
 
 public class ApresentacaoMain {
     private final Output out; //Imprime os outputs

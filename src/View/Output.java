@@ -1,4 +1,4 @@
-package src.view;
+package src.View;
 
 public class Output {
 
