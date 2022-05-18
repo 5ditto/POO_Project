@@ -21,7 +21,7 @@ public class GestorComunidade {
     }
 
     public Map<Integer, SmartHouse> getCasas(){
-        casas = new HashMap<>();
+        Map<Integer, SmartHouse> casas = new HashMap<>();
         for (SmartHouse h : this.casas.values()){
             int key = h.getNIF();
             casas.put(key,h.clone());
@@ -36,6 +36,13 @@ public class GestorComunidade {
             this.casas.put(key,h.clone());
         }
     }
+
+
+    //FAZER EQUALS; STRING; CLONE
+    //FAZER ADD CASA
+    //FAZER REMOVE CASA
+    //FAZER CONSUMO DIÁRIO!
+
 
     /*
 

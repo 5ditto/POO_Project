@@ -14,8 +14,7 @@ public class SmartHouse {
 
     private Map<UUID, SmartDevice> devices;
     private Map<String,List<UUID>> divisions;
-
-
+    
 
     public SmartHouse(){
         this.name = "";
@@ -81,11 +80,11 @@ public class SmartHouse {
     }
 
     public Comercializadores getFornecedor() {
-        return fornecedor.clone();
+        return fornecedor;
     }
 
     public void setFornecedor(Comercializadores fornecedor) {
-        this.fornecedor = fornecedor.clone();
+        this.fornecedor = fornecedor;
     }
 
     public Map<UUID, SmartDevice> getDevices() {
@@ -108,18 +107,17 @@ public class SmartHouse {
 
 
 
-    public SmartDevice getDevice(UUID id_device) {
-        return this.devices.get(id_device).clone();
-    }
 
-
-
-    public boolean existsDivision (String division){
+    public boolean existsDivision(String division){
         return this.divisions.containsKey(division);
     }
 
     public void addDivision(String division){
         this.divisions.putIfAbsent(division,new ArrayList<>());
+    }
+
+    public SmartDevice getDevice(UUID id_device) {
+        return this.devices.get(id_device).clone();
     }
 
     public void addDevice(SmartDevice device, String division){
@@ -133,49 +131,42 @@ public class SmartHouse {
         this.divisions.forEach((key,list) -> list.removeIf(id -> id.equals(device.getId())));
     }
 
-
-
-    //FAZER A PARTIR DE AQUI!!!
-
-
-
-    public boolean deviceInDivision(SmartDevice device, String division){
+    public boolean existsDeviceInDivision(SmartDevice device, String division){
         return (this.divisions.get(division).contains(device.getId()));
     }
 
     public void turnOnAll(){
-        this.devices.values().forEach(k -> k.setState(true));
+        this.devices.forEach((k,v) -> v.setState(true));
     }
 
     public void turnOffAll(){
-        this.devices.values().forEach(k -> k.setState(false));
+        this.devices.forEach((k,v) -> v.setState(false));
     }
 
     public void turnOnAllDivision(String division){
-        this.devices.values().stream().filter(d->deviceInDivision(division,d.getId())).forEach(k -> k.setState(true));
+        this.devices.values().stream().filter(d->existsDeviceInDivision(d,division)).forEach(v -> v.setState(true));
     }
 
     public void turnOffAllDivision(String division){
-        this.devices.values().stream().filter(d->deviceInDivision(division,d.getId())).forEach(k -> k.setState(false));
+        this.devices.values().stream().filter(d->existsDeviceInDivision(d,division)).forEach(v -> v.setState(false));
     }
 
-    public void turnOnDevice(String id){
+    public void turnOnDevice(UUID id){
         this.devices.get(id).setState(true);
     }
 
-    public void turnOffDevice(String id){
+    public void turnOffDevice(UUID id){
         this.devices.get(id).setState(false);
     }
 
+
+    //ALTERAR ISTO !!!
     public double consumoTotalCasaDiario(){
         return  this.devices.values().stream()
                                      .filter(SmartDevice::getState)
-                                     .mapToDouble(s->energia.precoDiaPorDispositivo(s,devices.size()))
+                                     .mapToDouble(s -> fornecedor.precoDiaPorDispositivo(s,devices.size()))
                                      .sum();
     }
-
-
-
 
 
 
