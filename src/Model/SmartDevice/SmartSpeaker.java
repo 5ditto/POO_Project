@@ -33,6 +33,15 @@ public class SmartSpeaker extends SmartDevice{
         this.consumoDiario = consumoDiario;
     }
 
+    public static SmartSpeaker parse(String line){
+        String[] divided = line.split(",");
+        int volume = Integer.parseInt(divided[0]);
+        String estacaoRadio = divided[1];
+        String marca = divided[2];
+        int consumoDiario = Integer.parseInt(divided[3]);
+        return new SmartSpeaker(volume,estacaoRadio,marca,consumoDiario);
+    }
+
     public boolean equals(Object o){
         if(o == this)
             return true;

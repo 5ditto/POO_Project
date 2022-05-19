@@ -11,8 +11,9 @@ public class SmartHouse {
 
     private String name;
     private int NIF;
-    private double custos_instalacao;
     private Comercializadores fornecedor;
+
+    private double custos_instalacao;
 
     private Map<UUID, SmartDevice> devices;
     private Map<String,List<UUID>> divisions;

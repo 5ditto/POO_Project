@@ -16,7 +16,7 @@ public class SmartCamera extends SmartDevice{
         this.tamanhoFicheiros = 0;
     }
 
-    public SmartCamera (int resolX, int resolY, int tamanhoFicheiros){
+    public SmartCamera (int resolX, int resolY, double tamanhoFicheiros){
         this.resolX = resolX;
         this.resolY = resolY;
         this.tamanhoFicheiros = tamanhoFicheiros;
@@ -27,6 +27,16 @@ public class SmartCamera extends SmartDevice{
         setResolX(sc.getResolX());
         setResolY(sc.getResolY());
         setTamanhoFicheiros(sc.getTamanhoFicheiros());
+    }
+
+    public static SmartCamera parse(String line){
+        String[] divided = line.split(",");
+        String resolutionNoParenthesis = divided[0].replaceAll("[()]", "");
+        String[] resolution = resolutionNoParenthesis.split("x");
+        int resolX = Integer.parseInt(resolution[0]);
+        int resolY = Integer.parseInt(resolution[1]);
+        double tamanhoFicheiros = Double.parseDouble(divided[1]);
+        return new SmartCamera(resolX,resolY,tamanhoFicheiros);
     }
 
     public boolean equals(Object o){

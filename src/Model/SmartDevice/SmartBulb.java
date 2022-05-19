@@ -33,6 +33,14 @@ public class SmartBulb extends SmartDevice{
         setConsumoDiario(sb.getConsumoDiario());
     }
 
+    public static SmartBulb parse(String line){
+        String[] divided = line.split(",");
+        int tonalidade = Integer.parseInt(divided[0]);
+        double dimensao = Double.parseDouble(divided[1]);
+        int consumoDiario = Integer.parseInt(divided[2]);
+        return new SmartBulb(tonalidade, dimensao, consumoDiario);
+    }
+
     public boolean equals(Object o){
         if (o == this)
             return true;

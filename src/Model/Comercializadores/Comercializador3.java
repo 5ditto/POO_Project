@@ -4,6 +4,23 @@ import src.Model.SmartDevice.SmartDevice;
 
 public class Comercializador3 implements Comercializadores{
 
+    String nome;
+
+    public Comercializador3(){
+        nome = "";
+    }
+
+    public Comercializador3(String nome){
+        this.nome = nome;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public static Comercializador3 parse(String line){
+        return new Comercializador3(line);
+    }
 
     public double precoDiaPorDispositivo(SmartDevice dispositivo, int numeroDispositivos){
 
