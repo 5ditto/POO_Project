@@ -2,17 +2,14 @@ package src.Model.Comercializadores;
 
 import src.Model.SmartDevice.SmartDevice;
 
-public class Comercializador2 extends Comercializadores{
+public class Comercializador2 implements Comercializadores{
 
-    public Comercializador2(){
-        super();
-    }
 
     public double precoDiaPorDispositivo(SmartDevice dispositivo, int numeroDispositivos){
 
         double preco = numeroDispositivos<5?
-                getValorBase() * dispositivo.consumoDiario() * (1 + getImpostos()) :
-                getValorBase() * dispositivo.consumoDiario() * (1 + getImpostos()) * 0.75;
+                valorBase * dispositivo.consumoDiario() * (1 + impostos) :
+                valorBase * dispositivo.consumoDiario() * (1 + impostos) * 0.75;
 
         return preco;
     }

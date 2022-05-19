@@ -54,6 +54,8 @@ public abstract class SmartDevice {
 
     public abstract SmartDevice clone();
 
+    public abstract double getCusto_instalacao();
+
     public abstract double consumoDiario();
 
 }

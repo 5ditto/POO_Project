@@ -90,6 +90,10 @@ public class SmartSpeaker extends SmartDevice{
         this.consumoDiario = consumoDiario;
     }
 
+    public double getCusto_instalacao(){
+        return custo_instalacao;
+    }
+
 
 @Override
     public double consumoDiario(){

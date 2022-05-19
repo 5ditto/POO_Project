@@ -75,6 +75,10 @@ public class SmartCamera extends SmartDevice{
         this.tamanhoFicheiros = tamanhoFicheiros;
     }
 
+    public double getCusto_instalacao(){
+        return custo_instalacao;
+    }
+
 
 
 @Override

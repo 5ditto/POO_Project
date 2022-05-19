@@ -89,6 +89,12 @@ public class SmartBulb extends SmartDevice{
         this.consumoDiario = consumoDiario;
     }
 
+    public double getCusto_instalacao(){
+        return custo_instalacao;
+    }
+
+
+
 @Override
     public double consumoDiario(){
         if (this.tonalidade == COLD) return consumoDiario*0.5;
