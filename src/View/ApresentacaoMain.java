@@ -31,7 +31,7 @@ public class ApresentacaoMain {
         Apresenta uma mensagem
      */
     public void printMessage(String message){
-        Output.clear();
+        Output.clearScreen();
         out.printMessage(message);
 
     }

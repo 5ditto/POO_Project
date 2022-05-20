@@ -44,8 +44,8 @@ public class Parser {
         SmartHouse sh = null;
         SmartDevice sd;
         String division = null;
-        for (String linha : linhas){
-            linhaPartida = linha.split(":",2);
+        for (String linha : linhas) {
+            linhaPartida = linha.split(":", 2);
             switch (linhaPartida[0]) {
                 case "Fornecedor" -> {
                     Comercializadores c;
@@ -79,19 +79,17 @@ public class Parser {
                 case "SmartSpeaker" -> {
                     if (division == null) throw new LinhaIncorretaException();
                     sd = SmartSpeaker.parse(linhaPartida[1]);
-                    sh.addDevice(sd,division);
+                    sh.addDevice(sd, division);
                 }
                 case "SmartCamera" -> {
                     if (division == null) throw new LinhaIncorretaException();
                     sd = SmartCamera.parse(linhaPartida[1]);
-                    sh.addDevice(sd,division);
+                    sh.addDevice(sd, division);
                 }
             }
         }
 
+        gc = new GestorComunidade(casas, comercializadores);
     }
-
-
-
 
 }

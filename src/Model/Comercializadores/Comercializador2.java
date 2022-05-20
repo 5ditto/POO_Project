@@ -4,7 +4,8 @@ import src.Model.SmartDevice.SmartDevice;
 
 public class Comercializador2 implements Comercializadores{
 
-    String nome;
+    private String nome;
+    private double descontoMenor = 1, descontoMaior = 0.75;
 
     public Comercializador2(){
         nome = "";
@@ -14,8 +15,34 @@ public class Comercializador2 implements Comercializadores{
         this.nome = nome;
     }
 
+    public Comercializador2(Comercializador2 c){
+        this.nome = c.getNome();
+        this.descontoMenor = c.getDescontoMenor();
+        this.descontoMaior = c.getDescontoMaior();
+    }
+
+    public Comercializador2 clone(){
+        return new Comercializador2(this);
+    }
+
     public String getNome() {
         return nome;
+    }
+
+    public double getDescontoMenor() {
+        return descontoMenor;
+    }
+
+    public void setDescontoMenor(double descontoMenor) {
+        this.descontoMenor = descontoMenor;
+    }
+
+    public double getDescontoMaior() {
+        return descontoMaior;
+    }
+
+    public void setDescontoMaior(double descontoMaior) {
+        this.descontoMaior = descontoMaior;
     }
 
     public static Comercializador2 parse(String line){
@@ -25,8 +52,8 @@ public class Comercializador2 implements Comercializadores{
     public double precoDiaPorDispositivo(SmartDevice dispositivo, int numeroDispositivos){
 
         double preco = numeroDispositivos<5?
-                valorBase * dispositivo.consumoDiario() * (1 + impostos) :
-                valorBase * dispositivo.consumoDiario() * (1 + impostos) * 0.75;
+                valorBase * dispositivo.consumoDiario() * (1 + impostos) * descontoMenor :
+                valorBase * dispositivo.consumoDiario() * (1 + impostos) * descontoMaior;
 
         return preco;
     }

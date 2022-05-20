@@ -5,6 +5,7 @@ import src.Model.Fatura;
 import src.Model.SmartDevice.SmartDevice;
 
 import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 
 public class SmartHouse {
@@ -12,6 +13,7 @@ public class SmartHouse {
     private String name;
     private int NIF;
     private Comercializadores fornecedor;
+    private Fatura fatura;
 
     private double custos_instalacao;
 
@@ -23,6 +25,7 @@ public class SmartHouse {
         this.name = "";
         this.NIF = 0;
         this.custos_instalacao = 0;
+        this.fatura = null;
         this.fornecedor = null; //fazer com que seja fornecedor 1 em casos default
         this.devices = new HashMap<>();
         this.divisions = new HashMap<>();
@@ -31,6 +34,7 @@ public class SmartHouse {
     public SmartHouse(String name, int NIF, Comercializadores fornecedor){
         this.name = name;
         this.NIF = NIF;
+        this.fatura = null;
         this.custos_instalacao = 0;
         this.fornecedor = null;
         this.devices = new HashMap<>();
@@ -40,6 +44,7 @@ public class SmartHouse {
     public SmartHouse(SmartHouse sh){
         setName(sh.getName());
         setNIF(sh.getNIF());
+        setFatura(sh.getFatura());
         setCustos_instalacao(sh.getCustos_instalacao());
         setFornecedor(sh.getFornecedor());
         setDevices(sh.getDevices());
@@ -61,12 +66,14 @@ public class SmartHouse {
         return "SmartHouse{\n" +
                 "Nome: " + name + '\n' +
                 "NIF: " + NIF + '\n' +
+                "Faturas " + fatura + '\n' +
                 "Custos instalação: " + custos_instalacao + '\n' +
                 "Devices: " + devices.values() + '\n' +
                 "Divisões: " + divisions.keySet() + '\n' +
                 "}";
     }
 
+    @Override
     public SmartHouse clone(){
         return new SmartHouse(this);
     }
@@ -122,6 +129,23 @@ public class SmartHouse {
     }
 
 
+    public Fatura getFatura(){
+        return this.fatura.clone();
+    }
+
+    private void setFatura(Fatura fatura) {
+        this.fatura = fatura;
+    }
+
+    /*
+    public ArrayList<Fatura> getFaturas() {
+        return this.faturas.stream().map(Fatura::clone).collect(Collectors.toCollection(ArrayList::new));
+    }
+
+    public void setFaturas(ArrayList<Fatura> f) {
+        this.faturas = f.stream().map(Fatura::clone).collect(Collectors.toCollection(ArrayList::new));
+    }
+    */
 
 
     public boolean existsDivision(String division){
@@ -190,6 +214,22 @@ public class SmartHouse {
                 .mapToDouble(val -> fornecedor.precoDiaPorDispositivo(val,devices.size()))
                 .sum();
     }
+
+
+    public void addFatura(Fatura f){
+        this.fatura = f.clone();
+        this.custos_instalacao = 0;
+    }
+
+
+    public void ligarRandom(){
+        for (SmartDevice s : this.devices.values()){
+            int randomNum = ThreadLocalRandom.current().nextInt(1, 3);
+            if (randomNum == 1) s.setState(true);
+            else if (randomNum == 2) s.setState(false);
+        }
+    }
+
 
 
 }

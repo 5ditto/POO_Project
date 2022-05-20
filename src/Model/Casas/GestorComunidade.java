@@ -1,26 +1,33 @@
 package src.Model.Casas;
 
+import src.Model.Comercializadores.Comercializadores;
+import src.Model.Fatura;
 import src.Model.SmartDevice.SmartDevice;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.lang.reflect.Array;
+import java.time.LocalDate;
+import java.util.*;
 import java.util.stream.Collectors;
 
 
 public class GestorComunidade {
 
     Map<Integer, SmartHouse> casas;
+    Map<String, Comercializadores> comercializadores;
 
     public GestorComunidade(){
         casas = new HashMap<>();
+        comercializadores = new HashMap<>();
     }
 
-    public GestorComunidade(Map<Integer,SmartHouse> casas){
+    public GestorComunidade(Map<Integer,SmartHouse> casas, Map<String, Comercializadores> comercializadores){
         this.setCasas(casas);
+        this.setComercializadores(comercializadores);
     }
 
     public GestorComunidade(GestorComunidade gestor){
         this.setCasas(gestor.getCasas());
+        this.setComercializadores(gestor.getComercializadores());
     }
 
     public boolean equals(Object o){
@@ -57,6 +64,23 @@ public class GestorComunidade {
         }
     }
 
+    public Map<String, Comercializadores> getComercializadores(){
+        Map<String, Comercializadores> comercializadores = new HashMap<>();
+        for (Comercializadores c : this.comercializadores.values()){
+            String key = c.getNome();
+            comercializadores.put(key,c.clone());
+        }
+        return comercializadores;
+    }
+
+    public void setComercializadores(Map<String, Comercializadores> comercializadores){
+        this.comercializadores = new HashMap<>();
+        for (Comercializadores c : comercializadores.values()){
+            String key = c.getNome();
+            this.comercializadores.put(key,c.clone());
+        }
+    }
+
 
 
     public void addCasa(SmartHouse casa){
@@ -88,6 +112,37 @@ public class GestorComunidade {
                 .stream()
                 .collect(Collectors.toMap(Map.Entry::getKey, val -> val.getValue().getCustos_instalacao()));
     }
+
+    public void addFaturas(LocalDate inicio, LocalDate fim){
+        this.casas.forEach((k,v) -> v.addFatura(Fatura.criarFatura(v,inicio,fim)));
+    }
+
+    public void ligarAleatorio(){
+        this.casas.forEach((k,v) -> v.ligarRandom());
+    }
+
+    public SmartHouse maisGastadora() {
+        return
+        this.casas.values().stream()
+                .max(Comparator.comparing(c -> c.getFatura().getConsumo())).get();
+    }
+
+    /*
+    public Comercializadores maisFaturacao(){
+
+    }
+    */
+
+
+    public List<Fatura> faturasComercializador(String comercializador){
+        return
+        this.casas.values().stream()
+                .filter(c -> c.getFornecedor().getNome().equals(comercializador))
+                .map(SmartHouse::getFatura)
+                .collect(Collectors.toList());
+    }
+
+
 
 
 
