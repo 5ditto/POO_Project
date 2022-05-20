@@ -5,6 +5,9 @@ import src.Controller.Interpretador;
 import src.Files.LinhaIncorretaException;
 import src.Files.Parser;
 import src.Model.Casas.GestorComunidade;
+import src.Model.Casas.SmartHouse;
+import src.Model.Comercializadores.Comercializador;
+import src.Model.Comercializadores.Comercializador1;
 import src.View.ApresentacaoMain;
 
 import java.io.Serializable;
@@ -40,14 +43,14 @@ public class GestorConsumoAPP implements Serializable {
 
         gc.ligarAleatorio();
 
-        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("d/M/yyyy");
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate inicio = LocalDate.now();
 
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Pressione Enter para começar");
+        System.out.println("Pressione Enter para começar!");
         scanner.nextLine();
 
-        System.out.println("A simulação encontra-se no dia de hoje (" + inicio.format(dateFormat) + ").\n Determine o avançar do tempo com o padrão dia/mês/ano!");
+        System.out.println("A simulação encontra-se no dia de hoje (" + inicio.format(dateFormat) + ").\nDetermine o avançar do tempo com o padrão dia/mês/ano!");
         String dia = scanner.nextLine();
         LocalDate fim = LocalDate.parse(dia, dateFormat);
 
@@ -76,34 +79,79 @@ public class GestorConsumoAPP implements Serializable {
 
                 }
                 case 3 ->{
-
+                    System.out.println("Escolha o comercializador para ver as faturas emitidas!");
+                    String fornecedor_faturas = scanner.nextLine();
+                    System.out.println(gc.faturasComercializador(fornecedor_faturas));
                 }
                 case 4 ->{
 
                 }
                 case 0 ->{
+                    int input_simul = -1;
+                    while (input_simul != 0){
                     System.out.println("Se desejar mudar o fornecedor de algumas casa pressione 1");
-                    System.out.println("Se desejar desligar os devices de alguma divisão de alguma casa pressione 2");
+                    System.out.println("Se desejar ligar/desligar os devices de alguma divisão de alguma casa pressione 2");
                     System.out.println("Se desejar alterar os valores de algum comerciante pressione 3");
-                    System.out.println("Se desejar continuar a simulação pressione 9");
-                    int input_simul = scanner.nextInt();
+                    System.out.println("Se desejar continuar a simulação pressione 0");
+                    input_simul = scanner.nextInt();
 
-                    switch (input_simul){
-                        case 1 ->{
-
+                    switch (input_simul) {
+                        case 1 -> {
+                            System.out.println("Escolha o NIF da casa cujo fornecedor quer mudar");
+                            int NIF_casa = scanner.nextInt();
+                            System.out.println("Escolha o novo fornecedor da casa " + NIF_casa);
+                            String fornecedor_new = scanner.nextLine();
+                            gc.mudarFornecedorCasa(NIF_casa,fornecedor_new);
                         }
-                        case 2 ->{
-
+                        case 2 -> {
+                            System.out.println("Pressione 1 se quiser ligar e 2 se quiser desligar");
+                            int ligar_desligar = scanner.nextInt();
+                            if (ligar_desligar == 1){
+                                System.out.println("Escolha o NIF da casa");
+                                int NIF_casa = scanner.nextInt();
+                                System.out.println("Escolha a divisão");
+                                String divisao = scanner.nextLine();
+                                gc.ligarDevicesDivisaoCasa(NIF_casa,divisao);
+                            }
+                            if (ligar_desligar == 2){
+                                System.out.println("Escolha o NIF da casa");
+                                int NIF_casa = scanner.nextInt();
+                                System.out.println("Escolha a divisão");
+                                String divisao = scanner.nextLine();
+                                gc.desligarDevicesDivisaoCasa(NIF_casa,divisao);
+                            }
+                            else{
+                                System.out.println("Opção não disponível!");
+                            }
                         }
-                        case 3 ->{
-
+                        case 3 -> {
+                            System.out.println("Escolha comerciante para alterar valores");
+                            String comerciante = scanner.nextLine();
+                            Comercializador c;
+                            c = gc.getComercializadores().get(comerciante);
+                            if (c instanceof Comercializador1){
+                                System.out.println("Selecione novo valor para o desconto do comerciante");
+                                double desconto_new = scanner.nextDouble();
+                                gc.mudarValoresComerciante(comerciante,desconto_new,1);
+                            }
+                            else{
+                                System.out.println("Selecione valor para o maior e menor desconto");
+                                double desconto_maior_new = scanner.nextDouble();
+                                double desconto_menor_new = scanner.nextDouble();
+                                gc.mudarValoresComerciante(comerciante,desconto_maior_new,desconto_menor_new);
+                                }
                         }
-                        case 9 ->{
-
+                        case 0 -> {
+                            System.out.println("A simulação encontra-se no dia " + inicio.format(dateFormat) + ".\n Determine o avançar do tempo com o padrão dia/mês/ano!");
+                            dia = scanner.nextLine();
+                            fim = LocalDate.parse(dia, dateFormat);
+                            gc.addFaturas(inicio, fim);
+                            inicio = fim;
                         }
                         default -> {
                             System.out.println("Opção inválida");
                         }
+                    }
                     }
                 }
 

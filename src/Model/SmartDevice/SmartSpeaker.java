@@ -8,7 +8,7 @@ public class SmartSpeaker extends SmartDevice{
     private int volume;
     private String estacaoRadio;
     private String marca;
-    private int consumoDiario;
+    private double consumoDiario;
 
     public SmartSpeaker(){
         super();
@@ -25,7 +25,7 @@ public class SmartSpeaker extends SmartDevice{
         setConsumoDiario(ss.getConsumoDiario());
     }
 
-    public SmartSpeaker(int volume, String estacaoRadio, String marca, int consumoDiario){
+    public SmartSpeaker(int volume, String estacaoRadio, String marca, double consumoDiario){
         super();
         this.volume = volume;
         this.estacaoRadio = estacaoRadio;
@@ -38,7 +38,7 @@ public class SmartSpeaker extends SmartDevice{
         int volume = Integer.parseInt(divided[0]);
         String estacaoRadio = divided[1];
         String marca = divided[2];
-        int consumoDiario = Integer.parseInt(divided[3]);
+        double consumoDiario = Double.parseDouble(divided[3]);
         return new SmartSpeaker(volume,estacaoRadio,marca,consumoDiario);
     }
 
@@ -91,11 +91,11 @@ public class SmartSpeaker extends SmartDevice{
         this.marca = marca;
     }
 
-    public int getConsumoDiario() {
+    public double getConsumoDiario() {
         return consumoDiario;
     }
 
-    public void setConsumoDiario(int consumoDiario) {
+    public void setConsumoDiario(double consumoDiario) {
         this.consumoDiario = consumoDiario;
     }
 

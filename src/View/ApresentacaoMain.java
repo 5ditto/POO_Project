@@ -26,7 +26,7 @@ public class ApresentacaoMain {
         System.out.println("#                                        #");
         System.out.println("##########################################");
         System.out.println("Bem-vindo!");
-        System.out.println("Pressione uma tecla para começar!");
+        System.out.println("Pressione Enter para começar!");
     }
 
     /*

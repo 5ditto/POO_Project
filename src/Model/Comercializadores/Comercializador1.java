@@ -2,7 +2,7 @@ package src.Model.Comercializadores;
 
 import src.Model.SmartDevice.SmartDevice;
 
-public class Comercializador1 implements Comercializadores{
+public class Comercializador1 implements Comercializador {
 
     private String nome;
     private double desconto = 0.9;
@@ -18,6 +18,14 @@ public class Comercializador1 implements Comercializadores{
     public Comercializador1(Comercializador1 c){
         this.nome = c.getNome();
         this.desconto = c.getDesconto();
+    }
+
+    @Override
+    public String toString() {
+        return "Comercializador1{" +
+                "nome='" + nome + '\'' +
+                ", desconto=" + desconto +
+                '}';
     }
 
     public Comercializador1 clone(){

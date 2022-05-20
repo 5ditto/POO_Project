@@ -9,7 +9,7 @@ public class SmartBulb extends SmartDevice{
 
     private int tonalidade;
     private double dimensao;
-    private int consumoDiario;
+    private double consumoDiario;
 
 
     public SmartBulb(){
@@ -19,7 +19,7 @@ public class SmartBulb extends SmartDevice{
         this.consumoDiario = 0;
     }
 
-    public SmartBulb(int tonalidade, double dimensao, int consumoDiario){
+    public SmartBulb(int tonalidade, double dimensao, double consumoDiario){
         super();
         this.tonalidade = tonalidade;
         this.dimensao = dimensao;
@@ -35,9 +35,13 @@ public class SmartBulb extends SmartDevice{
 
     public static SmartBulb parse(String line){
         String[] divided = line.split(",");
-        int tonalidade = Integer.parseInt(divided[0]);
+        String tonalidade_string = divided[0];
+        int tonalidade;
+        if (tonalidade_string.equals("Cold")) tonalidade = COLD;
+        else if (tonalidade_string.equals("Neutral")) tonalidade = NEUTRAL;
+        else tonalidade = WARM;
         double dimensao = Double.parseDouble(divided[1]);
-        int consumoDiario = Integer.parseInt(divided[2]);
+        double consumoDiario = Double.parseDouble(divided[2]);
         return new SmartBulb(tonalidade, dimensao, consumoDiario);
     }
 
@@ -89,11 +93,11 @@ public class SmartBulb extends SmartDevice{
         this.dimensao = dimensao;
     }
 
-    public int getConsumoDiario() {
+    public double getConsumoDiario() {
         return consumoDiario;
     }
 
-    public void setConsumoDiario(int consumoDiario) {
+    public void setConsumoDiario(double consumoDiario) {
         this.consumoDiario = consumoDiario;
     }
 

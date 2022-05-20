@@ -1,6 +1,7 @@
 package src.Model.Casas;
 
-import src.Model.Comercializadores.Comercializadores;
+import src.Model.Comercializadores.Comercializador;
+import src.Model.Comercializadores.Comercializador1;
 import src.Model.Fatura;
 import src.Model.SmartDevice.SmartDevice;
 
@@ -12,8 +13,8 @@ public class SmartHouse {
 
     private String name;
     private int NIF;
-    private Comercializadores fornecedor;
-    private Fatura fatura;
+    private Comercializador comercializador;
+    private List<Fatura> faturas;
 
     private double custos_instalacao;
 
@@ -25,18 +26,18 @@ public class SmartHouse {
         this.name = "";
         this.NIF = 0;
         this.custos_instalacao = 0;
-        this.fatura = null;
-        this.fornecedor = null; //fazer com que seja fornecedor 1 em casos default
+        this.faturas = new ArrayList<>();
+        this.comercializador = new Comercializador1(); //comercializador default
         this.devices = new HashMap<>();
         this.divisions = new HashMap<>();
     }
 
-    public SmartHouse(String name, int NIF, Comercializadores fornecedor){
+    public SmartHouse(String name, int NIF, Comercializador comercializador){
         this.name = name;
         this.NIF = NIF;
-        this.fatura = null;
+        this.faturas = new ArrayList<>();
         this.custos_instalacao = 0;
-        this.fornecedor = null;
+        this.comercializador = comercializador.clone();
         this.devices = new HashMap<>();
         this.divisions = new HashMap<>();
     }
@@ -44,7 +45,7 @@ public class SmartHouse {
     public SmartHouse(SmartHouse sh){
         setName(sh.getName());
         setNIF(sh.getNIF());
-        setFatura(sh.getFatura());
+        setFaturas(sh.getFaturas());
         setCustos_instalacao(sh.getCustos_instalacao());
         setFornecedor(sh.getFornecedor());
         setDevices(sh.getDevices());
@@ -58,7 +59,7 @@ public class SmartHouse {
             return false;
         SmartHouse sh = (SmartHouse) o;
         return ( (this.name.equals(sh.getName())) && (this.NIF == sh.getNIF())
-                && (this.custos_instalacao == sh.getCustos_instalacao()) && (this.fornecedor.equals(sh.getFornecedor()))
+                && (this.custos_instalacao == sh.getCustos_instalacao()) && (this.comercializador.equals(sh.getFornecedor()))
                 && (this.devices.equals(sh.getDevices())) && this.divisions.equals(sh.getDivisions()));
     }
 
@@ -66,7 +67,8 @@ public class SmartHouse {
         return "SmartHouse{\n" +
                 "Nome: " + name + '\n' +
                 "NIF: " + NIF + '\n' +
-                "Faturas " + fatura + '\n' +
+                "Faturas " + faturas + '\n' +
+                "Comercializador " + comercializador + '\n' +
                 "Custos instalação: " + custos_instalacao + '\n' +
                 "Devices: " + devices.values() + '\n' +
                 "Divisões: " + divisions.keySet() + '\n' +
@@ -94,12 +96,12 @@ public class SmartHouse {
         this.NIF = NIF;
     }
 
-    public Comercializadores getFornecedor() {
-        return fornecedor;
+    public Comercializador getFornecedor() {
+        return comercializador.clone();
     }
 
-    public void setFornecedor(Comercializadores fornecedor) {
-        this.fornecedor = fornecedor;
+    public void setFornecedor(Comercializador comercializador) {
+        this.comercializador = comercializador.clone();
     }
 
     private Map<UUID, SmartDevice> getDevices() {
@@ -128,16 +130,6 @@ public class SmartHouse {
         this.custos_instalacao = custos_instalacao;
     }
 
-
-    public Fatura getFatura(){
-        return this.fatura.clone();
-    }
-
-    private void setFatura(Fatura fatura) {
-        this.fatura = fatura;
-    }
-
-    /*
     public ArrayList<Fatura> getFaturas() {
         return this.faturas.stream().map(Fatura::clone).collect(Collectors.toCollection(ArrayList::new));
     }
@@ -145,7 +137,6 @@ public class SmartHouse {
     public void setFaturas(ArrayList<Fatura> f) {
         this.faturas = f.stream().map(Fatura::clone).collect(Collectors.toCollection(ArrayList::new));
     }
-    */
 
 
     public boolean existsDivision(String division){
@@ -211,13 +202,13 @@ public class SmartHouse {
     public double custoTotalCasaDiario(){
         return  this.devices.values().stream()
                 .filter(SmartDevice::getState)
-                .mapToDouble(val -> fornecedor.precoDiaPorDispositivo(val,devices.size()))
+                .mapToDouble(val -> comercializador.precoDiaPorDispositivo(val,devices.size()))
                 .sum();
     }
 
 
     public void addFatura(Fatura f){
-        this.fatura = f.clone();
+        this.faturas.add(f.clone());
         this.custos_instalacao = 0;
     }
 
