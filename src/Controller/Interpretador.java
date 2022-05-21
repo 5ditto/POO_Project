@@ -47,7 +47,7 @@ public class Interpretador implements InterfaceInterpretador {
         ap.printMessage("Determine o avançar do tempo com o padrão dia/mês/ano!");
         LocalDate fim = in.readLocalDate();
         while(fim.isBefore(inicio)){
-            ap.printline("A data têm de ser posterior à data atual (" + inicio.format(dateFormat) +").");
+            ap.printMessage("A data têm de ser posterior à data atual (" + inicio.format(dateFormat) +").");
             fim = in.readLocalDate();
         }
         gc.addFaturas(inicio, fim);
@@ -68,7 +68,6 @@ public class Interpretador implements InterfaceInterpretador {
                 case 3 -> {
                     interpretadorAlteracoes(methodList);
                 }
-
                 case 0 -> {
                     ap.printMessage("A simulação encontra-se no dia " + inicio.format(dateFormat) + ".\n");
                     ap.printMessage("Determine o avançar do tempo com o padrão dia/mês/ano!\n");
@@ -129,7 +128,7 @@ public class Interpretador implements InterfaceInterpretador {
                 LocalDate fim_fatura = in.readLocalDate();
                 ap.printMessage("Escolha o tamanho da lista dos maiores consumidores!");
                 int numero_consumidores = in.readInt();
-                //ap.printMaiorConsumidorTempo(gc.getMaxConsumidorTempo(inicio_fatura,fim_fatura,numero_consumidores),inicio_fatura,fim_fatura);
+                ap.printMaiorConsumidorTempo(gc.getMaxConsumidorTempo(inicio_fatura,fim_fatura),inicio_fatura,fim_fatura,numero_consumidores);
             }
 
             default -> {
@@ -146,8 +145,12 @@ public class Interpretador implements InterfaceInterpretador {
 
         switch (input) {
             case 1 -> {
+                ap.printMessage("Casas existentes na vizinhança:");
+                ap.printCasas(gc);
                 ap.printMessage("Escolha o NIF da casa cujo comercializante quer mudar!");
                 int NIF_casa = in.readInt();
+                ap.printMessage("Fornecedores existentes na vizinhança:");
+                ap.printComercializadores(gc);
                 ap.printMessage("Escolha o novo fornecedor da casa " + NIF_casa + '!');
                 String fornecedor_new = in.readline();
                 methodList.add(p -> gc.mudarFornecedorCasa(NIF_casa, fornecedor_new));
@@ -159,20 +162,25 @@ public class Interpretador implements InterfaceInterpretador {
                 int ligar_desligar = in.readInt();
                 ap.printMenuTurnDivisionDevice();
                 int divisao_device = in.readInt();
+                ap.printMessage("Casas existentes na vizinhança:");
+                ap.printCasas(gc);
                 if (ligar_desligar == 1) {
                     ap.printMessage("Escolha o NIF da casa!");
                     int NIF_casa = in.readInt();
                     ap.printMessage("Escolha a divisão!");
                     String divisao = in.readline();
                     if (divisao_device == 1) {
+                        ap.printMessage("Divisões da casa:");
+                        ap.printDivisoes(gc.getCasa(NIF_casa));
                         methodList.add(p -> gc.ligarDevicesDivisaoCasa(NIF_casa, divisao));
                         ap.printNextSimulation();
                     } else if (divisao_device == 2) {
-                        ap.printDevicesDivisao(gc.getCasa(NIF_casa).getdevicesDivision(divisao));
+                        ap.printMessage("Devices da divisão:");
+                        ap.printDevicesDivisao(gc.getCasa(NIF_casa),divisao);
                         ap.printMessage("Escolha o id do dispositivo que quer ligar!");
                         UUID id = UUID.fromString(in.readline());
                         gc.ligarDeviceCasa(NIF_casa, id);
-                        ap.printNextSimulation();
+                        ap.printNextSimulation();ap.printMessage("Devices da casa:");
 
                     } else {
                         ap.printOpInvalida();
@@ -180,13 +188,16 @@ public class Interpretador implements InterfaceInterpretador {
                 } else if (ligar_desligar == 2) {
                     ap.printMessage("Escolha o NIF da casa!");
                     int NIF_casa = in.readInt();
+                    ap.printMessage("Divisões da casa:");
+                    ap.printDivisoes(gc.getCasa(NIF_casa));
                     ap.printMessage("Escolha a divisão!");
                     String divisao = in.readline();
                     if (divisao_device == 1) {
                         methodList.add(p -> gc.desligarDevicesDivisaoCasa(NIF_casa, divisao));
                         ap.printNextSimulation();
                     } else if (divisao_device == 2) {
-                        ap.printDevicesDivisao(gc.getCasa(NIF_casa).getdevicesDivision(divisao));
+                        ap.printMessage("Devices da divisão:");
+                        ap.printDevicesDivisao(gc.getCasa(NIF_casa),divisao);
                         ap.printMessage("Escolha o id do dispositivo que quer desligar.");
                         UUID id = UUID.fromString(in.readline());
                         gc.desligarDeviceCasa(NIF_casa, id);
@@ -200,6 +211,8 @@ public class Interpretador implements InterfaceInterpretador {
             }
 
             case 3 -> {
+                ap.printMessage("Fornecedores existentes na vizinhança:");
+                ap.printComercializadores(gc);
                 ap.printMessage("Escolha comerciante para alterar os seus valores!");
                 String comerciante = in.readline();
                 Comercializador c;

@@ -67,7 +67,8 @@ public class SmartHouse {
     public String toString(){
         return "SmartHouse [" +
                 "Nome: " + name +
-                " | NIF: " + NIF + "]\n";
+                " | NIF: " + NIF +
+                " | Fornecedor: " + comercializador.getNome() + "]\n";
     }
 
     @Override

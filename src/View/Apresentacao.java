@@ -1,5 +1,6 @@
 package src.View;
 
+import src.Model.Casas.GestorComunidade;
 import src.Model.Casas.SmartHouse;
 import src.Model.Comercializadores.Comercializador;
 import src.Model.Fatura.Fatura;
@@ -7,6 +8,7 @@ import src.Model.SmartDevice.SmartDevice;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 public class Apresentacao implements InterfaceApp {
     private final Output out; //Imprime os outputs
@@ -50,10 +52,10 @@ public class Apresentacao implements InterfaceApp {
 
 
     public void printMenuConsultas(){
-        out.printMenus((new String[]{"Casa que mais gastou", //1
+        out.printMenus((new String[]{"Casa que mais gastou no último período", //1
                                      "Fornecedor com maior volume de faturação", // 2
                                      "Listar as faturas emitidas por um fornecedor", // 3
-                                     "Listar os maiores consumidor de energia durante um periodo"}),  // 4
+                                     "Listar os maiores consumidores de energia durante um periodo"}),  // 4
                                      "MENU CONSULTAS",1);
     }
 
@@ -94,12 +96,24 @@ public class Apresentacao implements InterfaceApp {
         ap.printComercializadorMaisFaturacao(c,volume);
     }
 
-    public void printDevicesDivisao(List<SmartDevice> listSD){
-        ap.printDevicesDivisao(listSD);
+    public void printMaiorConsumidorTempo(Map<Double,SmartHouse> c, LocalDate inicio, LocalDate fim, int consumidor){
+        ap.printMaiorConsumidorTempo(c, inicio, fim, consumidor);
     }
 
-    public void printMaiorConsumidorTempo(SmartHouse c, LocalDate inicio, LocalDate fim){
-        ap.printMaiorConsumidorTempo(c, inicio, fim);
+    public void printCasas(GestorComunidade gc){
+        ap.printCasas(gc);
+    }
+
+    public void printComercializadores(GestorComunidade gc){
+        ap.printComercializadores(gc);
+    }
+
+    public void printDivisoes(SmartHouse c){
+        ap.printDivisoes(c);
+    }
+
+    public void printDevicesDivisao(SmartHouse c, String divisao){
+        ap.printDevicesDivisao(c,divisao);
     }
 
 }

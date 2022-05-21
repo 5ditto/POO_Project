@@ -1,12 +1,15 @@
 package src.View;
 
+import src.Model.Casas.GestorComunidade;
 import src.Model.Casas.SmartHouse;
 import src.Model.Comercializadores.Comercializador;
 import src.Model.Fatura.Fatura;
 import src.Model.SmartDevice.SmartDevice;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Map;
 
 public class ApresentacaoMain {
 
@@ -28,12 +31,31 @@ public class ApresentacaoMain {
                            + "€");
     }
 
-    public void printDevicesDivisao(List<SmartDevice> listSD){
-        System.out.println("Os dispositivos desta divisão são " + listSD);
+    public void printMaiorConsumidorTempo(Map<Double,SmartHouse> c, LocalDate inicio, LocalDate fim, int consumidor){
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        System.out.println("Top " + consumidor + " consumidores no período de tempo de " + inicio.format(dateFormat) + " a " + fim.format(dateFormat) + '.');
+        int counter = 1;
+        for (SmartHouse sh : c.values()){
+        System.out.println("O consumidor número " + counter + " é " + sh + " e consumiu " + sh.volumeFaturaEntreDatas(inicio,fim) + " Joules.");
+        counter++;
+        if (counter > consumidor) break;
+        }
     }
 
-    public void printMaiorConsumidorTempo(SmartHouse c, LocalDate inicio, LocalDate fim){
-        System.out.println("O maior consumidor no período de tempo de " + inicio + " a " + fim + " é " + c);
+    public void printCasas(GestorComunidade gc){
+        System.out.println(gc.getCasas());
+    }
+
+    public void printComercializadores(GestorComunidade gc){
+        System.out.println(gc.getComercializadores().values());
+    }
+
+    public void printDivisoes(SmartHouse c){
+        System.out.println(c.getDivisions().values());
+    }
+
+    public void printDevicesDivisao(SmartHouse c, String divisao){
+        System.out.println(c.getdevicesDivision(divisao));
     }
 
 }

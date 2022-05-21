@@ -1,5 +1,6 @@
 package src.View;
 
+import src.Model.Casas.GestorComunidade;
 import src.Model.Casas.SmartHouse;
 import src.Model.Comercializadores.Comercializador;
 import src.Model.Fatura.Fatura;
@@ -7,6 +8,7 @@ import src.Model.SmartDevice.SmartDevice;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 
 public interface InterfaceApp {
@@ -34,10 +36,15 @@ public interface InterfaceApp {
 
     public void printComercializadorMaisFaturacao(Comercializador c, Double volume);
 
-    public void printDevicesDivisao(List<SmartDevice> listSD);
+    public void printMaiorConsumidorTempo(Map<Double,SmartHouse> c, LocalDate inicio, LocalDate fim, int consumidor);
 
-    public void printMaiorConsumidorTempo(SmartHouse c, LocalDate inicio, LocalDate fim);
+    public void printCasas(GestorComunidade gc);
 
+    public void printComercializadores(GestorComunidade gc);
+
+    public void printDivisoes(SmartHouse c);
+
+    public void printDevicesDivisao(SmartHouse c, String divisao);
 
 }
 
