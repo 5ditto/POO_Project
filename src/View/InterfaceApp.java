@@ -36,7 +36,7 @@ public interface InterfaceApp {
 
     public void printComercializadorMaisFaturacao(Comercializador c, Double volume);
 
-    public void printMaiorConsumidorTempo(Map<Double,SmartHouse> c, LocalDate inicio, LocalDate fim, int consumidor);
+    public void printMaiorConsumidorTempo(List<SmartHouse> c, LocalDate inicio, LocalDate fim, int consumidor);
 
     public void printCasas(GestorComunidade gc);
 

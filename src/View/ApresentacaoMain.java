@@ -31,11 +31,11 @@ public class ApresentacaoMain {
                            + "€");
     }
 
-    public void printMaiorConsumidorTempo(Map<Double,SmartHouse> c, LocalDate inicio, LocalDate fim, int consumidor){
+    public void printMaiorConsumidorTempo(List<SmartHouse> c, LocalDate inicio, LocalDate fim, int consumidor){
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         System.out.println("Top " + consumidor + " consumidores no período de tempo de " + inicio.format(dateFormat) + " a " + fim.format(dateFormat) + '.');
         int counter = 1;
-        for (SmartHouse sh : c.values()){
+        for (SmartHouse sh : c){
         System.out.println("O consumidor número " + counter + " é " + sh + " e consumiu " + sh.volumeFaturaEntreDatas(inicio,fim) + " Joules.");
         counter++;
         if (counter > consumidor) break;

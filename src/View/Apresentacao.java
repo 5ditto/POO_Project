@@ -96,7 +96,7 @@ public class Apresentacao implements InterfaceApp {
         ap.printComercializadorMaisFaturacao(c,volume);
     }
 
-    public void printMaiorConsumidorTempo(Map<Double,SmartHouse> c, LocalDate inicio, LocalDate fim, int consumidor){
+    public void printMaiorConsumidorTempo(List<SmartHouse> c, LocalDate inicio, LocalDate fim, int consumidor){
         ap.printMaiorConsumidorTempo(c, inicio, fim, consumidor);
     }
 

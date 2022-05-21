@@ -229,7 +229,8 @@ public class SmartHouse {
     public double volumeFaturaEntreDatas(LocalDate inicio, LocalDate fim){
         return
         this.faturas.stream()
-                .filter(f -> (f.getInicio().isBefore(inicio) || f.getInicio().isEqual(inicio)) && (f.getFim().isAfter(fim) || f.getFim().isEqual(fim)))
+                .filter(f -> (f.getInicio().isAfter(inicio) || f.getInicio().isEqual(inicio)) &&
+                             (f.getFim().isBefore(fim) || f.getFim().isEqual(fim)))
                 .mapToDouble(Fatura::getConsumo)
                 .sum();
     }

@@ -202,13 +202,14 @@ public class GestorComunidade {
     }
 
 
-    public Map<Double, SmartHouse> getMaxConsumidorTempo(LocalDate inicio, LocalDate fim) {
-        Map<Double, SmartHouse> organizado = new TreeMap<>(Collections.reverseOrder());
-        for (SmartHouse c : this.casas.values()) {
-            organizado.put(c.volumeFaturaEntreDatas(inicio, fim), c.clone());
-        }
-        return organizado;
+    public List<SmartHouse> getMaxConsumidorTempo(LocalDate inicio, LocalDate fim) {
+        List<SmartHouse> consumidorSort = new ArrayList<>(this.getCasas().values());
+        consumidorSort.sort(Comparator.comparingDouble(c -> c.volumeFaturaEntreDatas(inicio, fim)));
+        Collections.reverse(consumidorSort);
+        return consumidorSort;
     }
+
+
 
 
 }
