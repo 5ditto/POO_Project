@@ -1,5 +1,6 @@
 package src.Model.Casas;
 
+import jdk.incubator.vector.VectorOperators;
 import src.Model.Comercializadores.*;
 import src.Model.Comercializadores.Comercializador1;
 import src.Model.Comercializadores.Comercializador2;
@@ -202,11 +203,13 @@ public class GestorComunidade {
     }
 
 
-    public Set<SmartHouse> getMaxConsumidorTempo(LocalDate inicio, LocalDate fim, int consumidores){
-        return
-        this.casas.values().stream().sorted(Comparator.comparing( c -> c.volumeFaturaEntreDatas(inicio,fim)).reversed())
-                .collect(Collectors.toCollection(TreeSet::new));
+    public Map<Double,SmartHouse> getMaxConsumidorTempo(LocalDate inicio, LocalDate fim, int consumidores){
+        Map <Double,SmartHouse> organizado = new TreeMap<>(Collections.reverseOrder());
+        for (SmartHouse c : this.casas.values()){
+            organizado.put(c.volumeFaturaEntreDatas(inicio,fim),c.clone());
+        }
 
+        return organizado;
     }
 
 
