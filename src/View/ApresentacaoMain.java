@@ -58,5 +58,11 @@ public class ApresentacaoMain {
         System.out.println(c.getdevicesDivision(divisao));
     }
 
+    public void printUltimoConsumoECusto(SmartHouse c){
+        Fatura f = c.getFaturas().get(c.getFaturas().size()-1);
+        System.out.println("No último período a casa consumiu: " +f.getConsumo()+ " Joules e "
+                + "gastou " +  (f.getCustos_consumo() + f.getCustos_instalacao()) + "€");
+    }
+
 }
 

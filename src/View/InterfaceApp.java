@@ -46,5 +46,7 @@ public interface InterfaceApp {
 
     public void printDevicesDivisao(SmartHouse c, String divisao);
 
+    public void printUltimoConsumoECusto(SmartHouse c);
+
 }
 

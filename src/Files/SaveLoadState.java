@@ -8,11 +8,11 @@ import java.io.*;
 
 public class SaveLoadState {
 
-    public static int saveDados(String fileName, GestorComunidade gcapp) {
+    public static int saveDados(String fileName, GestorComunidade gc) {
         try {
             FileOutputStream file = new FileOutputStream(fileName);
             ObjectOutputStream oos = new ObjectOutputStream(file);
-            oos.writeObject(gcapp);
+            oos.writeObject(gc);
             oos.flush();
             oos.close();
         }
@@ -27,12 +27,12 @@ public class SaveLoadState {
     }
 
 
-    public static GestorConsumoAPP loadDados(String fileName) throws IOException, ClassNotFoundException {
+    public static GestorComunidade loadDados(String fileName) throws IOException, ClassNotFoundException {
         FileInputStream file = new FileInputStream(fileName);
         ObjectInputStream ois = new ObjectInputStream(file);
-        GestorConsumoAPP gcapp = (GestorConsumoAPP) ois.readObject();
+        GestorComunidade gc = (GestorComunidade) ois.readObject();
         ois.close();
-        return gcapp;
+        return gc;
     }
 
 

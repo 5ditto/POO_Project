@@ -66,10 +66,10 @@ public class Apresentacao implements InterfaceApp {
                                      "MENU ALTERAÇÕES",1);
     }
     public void printMainMenu(){
-        out.printMenus((new String[]{"Dar save/load do estado do programa", //1
+        out.printMenus((new String[]{"Dar save do estado do programa", //1
                                      "Consultar estatísticas da vizinhança", // 2
                                      "Fazer alterações nos dispositivos, fornecedores, casas",// 3
-                                     "Visualizar dados do programa"}),
+                                     "Visualizar dados do programa"}),// 4
                                      "MENU PRINCIPAL",0);
     }
 
@@ -80,10 +80,11 @@ public class Apresentacao implements InterfaceApp {
     }
 
     public void printMenuDados(){
-        out.printMenus((new String[]{"Ver casas da visinhança",
-                                     "Ver casas da vizinhança e casa particular",
-                                     "Ver casas na vizinhança e ver casa em particular e ver faturas",
-                                     "Ver casas na vizinhança, casa em particular e dispositivos de divisao",
+        out.printMenus((new String[]{"Ver casas da vizinhança",
+                                     "Ver casa divisões duma casar",
+                                     "Ver dispositivos numa divisão de uma casa",
+                                     "Ver faturas duma casa",
+                                     "Ver casas na vizinhança, casa em particular e último consumo",
                                      "Ver fornecedores"}),
                                      "Menu Visualizar Dados",1);
     }
@@ -130,6 +131,10 @@ public class Apresentacao implements InterfaceApp {
 
     public void printDevicesDivisao(SmartHouse c, String divisao){
         ap.printDevicesDivisao(c,divisao);
+    }
+
+    public void printUltimoConsumoECusto(SmartHouse c){
+        ap.printUltimoConsumoECusto(c);
     }
 
 }
