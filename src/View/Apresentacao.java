@@ -24,7 +24,7 @@ public class Apresentacao {
     }
 
     public void printComercializadorMaisFaturacao(Comercializador c, Double volume){
-        System.out.println("O comercializador com maior volume de faturação é o " + c + " com um volume de faturação total de " + volume
+        System.out.println("O fornecedor com maior volume de faturação é o " + c + " com um volume de faturação total de " + volume
                            + "€");
     }
 

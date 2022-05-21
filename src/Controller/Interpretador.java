@@ -66,10 +66,8 @@ public class Interpretador {
                 }
                 case 4 -> {
                     ap.printMessage("Escolha a data inicial das faturas!");
-                    String inicio_fatura_string = in.readline();
                     LocalDate inicio_fatura = in.readLocalDate();
                     ap.printMessage("Escolha a data final das faturas!");
-                    String fim_fatura_string = in.readline();
                     LocalDate fim_fatura = in.readLocalDate();
                     ap.printMaiorConsumidorTempo(gc.getMaxConsumidorTempo(inicio_fatura,fim_fatura),inicio_fatura,fim_fatura);
                 }
@@ -79,7 +77,7 @@ public class Interpretador {
                     ap.printMessage("Escolha o novo fornecedor da casa " + NIF_casa);
                     String fornecedor_new = in.readline();
                     methodList.add(p -> gc.mudarFornecedorCasa(NIF_casa, fornecedor_new));
-                    ap.printline("A alteração irá ser executada a próxima vez que correr a simulação!");
+                    ap.printMessage("A alteração irá ser executada a próxima vez que correr a simulação!");
                 }
                 case 6 -> {
                     ap.printMenuTurnOffON();
@@ -164,7 +162,7 @@ public class Interpretador {
                 }
                 case 9 -> {
                     ap.printMessage("Programa terminado!");
-                    System.exit(0);
+                    in.close();
                 }
                 default -> {
                     ap.printline("Opção inválida");

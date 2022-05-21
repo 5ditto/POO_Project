@@ -57,7 +57,7 @@ public class ApresentacaoMain {
 
     public void printMainMenu(){
         out.printMenus((new String[]{"Casa que mais gastou", //1
-                                     "FOrnecedor com maior volume de faturação", // 2
+                                     "Fornecedor com maior volume de faturação", // 2
                                      "Listar as faturas emitidas por um fornecedor", // 3
                                      "Listar os maiores consumidor de energia durante um periodo", // 4
                                      "Mudar o fornecedor de algumas casa", // 5
@@ -101,9 +101,6 @@ public class ApresentacaoMain {
     }
 
 
-        public void clearScreen(){
-        Output.clearScreen();
-    }
 
 }
 

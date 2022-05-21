@@ -18,14 +18,6 @@ public class Output {
         System.out.print(m);
     }
 
-    /*
-        Clear Screen
-     */
-    public static void clearScreen(){
-        System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-        System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-    }
-
     public void printMenus(String []menu, String message, int type){
         int size, length = message.length();
 
