@@ -35,7 +35,7 @@ public class GestorComunidade {
     }
 
     public String toString() {
-        return "Comunidade{ " + casas.toString() + "}\n";
+        return "Comunidade [ " + casas.toString() + "]\n";
     }
 
     public GestorComunidade clone() {

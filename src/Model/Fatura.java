@@ -53,14 +53,13 @@ public class Fatura {
 
     @Override
     public String toString() {
-        return "Fatura{" +
-                "Primeiro dia: " + inicio + '\n' +
-                "Segundo dia : " + fim + '\n' +
-                "Consumo: " + consumo + "kw" + '\n' +
-                "Custos do consumo: " + custos_consumo + '\n' +
-                "Custos da instalação: " + custos_instalacao + '\n' +
-                "Comercializador: " + comercializador + '\n' +
-                '}';
+        return "Fatura do Comercializador " + comercializador +
+                " [Primeiro dia: " + inicio +
+                " | Segundo dia: " + fim +
+                " | Consumo: " + consumo + "KW" +
+                " | Custos do consumo: " + custos_consumo + "€" +
+                " | Custos da instalação: " + custos_instalacao + "€" +
+                " | Comercializador: " + comercializador + "]\n";
     }
 
     public Fatura clone(){
