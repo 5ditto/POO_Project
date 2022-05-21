@@ -38,6 +38,7 @@ public class Output {
         if(type == 0) {
             System.out.println("0 | Continuar Simulação");
             System.out.println("9 | Sair");
-        }
+        } else if (type == 2)
+                System.out.println("9 | Sair");
     }
 }

@@ -1,5 +1,6 @@
 package src.Controller;
 
+import src.Files.SaveLoadState;
 import src.Model.Casas.GestorComunidade;
 import src.Model.Comercializadores.Comercializador;
 import src.Model.Comercializadores.Comercializador1;
@@ -28,75 +29,54 @@ public class Interpretador implements InterfaceInterpretador {
         gc = g;
     }
 
-    public void interpretador() throws ClassNotFoundException, IOException{
-        int input;
-        List<Consumer<String>> methodList = new ArrayList<>();
-        gc.ligarAleatorio();
-
+    public void interpretador() throws ClassNotFoundException, IOException {
         ap.welcome();
         in.readline();
-
-        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate inicio = LocalDate.now();
-        /*
-
-         */
-
-
-        ap.printMessage("A simulação encontra-se no dia de hoje (" + inicio.format(dateFormat) + ").");
-        ap.printMessage("Determine o avançar do tempo com o padrão dia/mês/ano!");
-        LocalDate fim = in.readLocalDate();
-        while(fim.isBefore(inicio)){
-            ap.printMessage("A data têm de ser posterior à data atual (" + inicio.format(dateFormat) +").");
-            fim = in.readLocalDate();
-        }
-        gc.addFaturas(inicio, fim);
-        inicio = fim;
-
-        while (true){
-            ap.printMainMenu();
-            ap.printline("Escolha a sua opção:");
-            input = in.readInt();
-
-            switch (input) {
-
-                case 1->{}
-
-                case 2 -> {
-                    interpretadorConsultas();
+        int input;
+        ap.printMenuInicial();
+        ap.printline("Escolha a sua opção:");
+        input = in.readInt();
+        switch (input) {
+            case 1 ->{
+                ap.printMessage("Introduz o nome do ficheiro com os dados");
+                String file = in.readline();
+                try{
+                    SaveLoadState.loadDados(file);
+                }catch (IOException | ClassNotFoundException e){
+                    e.printStackTrace();
                 }
-                case 3 -> {
-                    interpretadorAlteracoes(methodList);
-                }
-                case 0 -> {
-                    ap.printMessage("A simulação encontra-se no dia " + inicio.format(dateFormat) + ".\n");
-                    ap.printMessage("Determine o avançar do tempo com o padrão dia/mês/ano!\n");
+            }
+
+            case 2 -> {
+
+                List<Consumer<String>> methodList = new ArrayList<>();
+
+                DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                LocalDate inicio = LocalDate.now();
+
+                gc.ligarAleatorio();
+                ap.printMessage("A simulação encontra-se no dia de hoje (" + inicio.format(dateFormat) + ").");
+                ap.printMessage("Determine o avançar do tempo com o padrão dia/mês/ano!");
+                LocalDate fim = in.readLocalDate();
+                while (fim.isBefore(inicio)) {
+                    ap.printMessage("A data têm de ser posterior à data atual (" + inicio.format(dateFormat) + ").");
                     fim = in.readLocalDate();
-                    while(fim.isBefore(inicio)){
-                        ap.printline("A data têm de ser posterior à data atual (" + inicio.format(dateFormat) +").");
-                        fim = in.readLocalDate();
-                    }
-                    gc.addFaturas(inicio, fim);
-                    inicio = fim;
-                        if (!methodList.isEmpty()) {
-                            for (Consumer<String> method : methodList) {
-                                method.accept(null);
-                            }
-                            ap.printMessage("As alterações foram executadas!");
-                            methodList.clear();
-                        }
                 }
-                case 9 -> {
-                        ap.printMessage("Programa terminado!");
-                        in.close();
+
+
+                gc.addFaturas(inicio, fim);
+                inicio = fim;
+
+                interpretadorMenuPrincipal(methodList,input, inicio, fim, dateFormat);
+
                 }
                 default -> {
-                        ap.printOpInvalida();
+                    ap.printOpInvalida();
                 }
             }
 
         }
-    }
+
 
     public void interpretadorConsultas(){
         ap.printMenuConsultas();
@@ -176,7 +156,7 @@ public class Interpretador implements InterfaceInterpretador {
                         ap.printNextSimulation();
                     } else if (divisao_device == 2) {
                         ap.printMessage("Devices da divisão:");
-                        ap.printDevicesDivisao(gc.getCasa(NIF_casa),divisao);
+                        ap.printDevicesDivisao(gc.getCasa(NIF_casa), divisao);
                         ap.printMessage("Escolha o id do dispositivo que quer ligar!");
                         UUID id = UUID.fromString(in.readline());
                         gc.ligarDeviceCasa(NIF_casa, id);
@@ -197,7 +177,7 @@ public class Interpretador implements InterfaceInterpretador {
                         ap.printNextSimulation();
                     } else if (divisao_device == 2) {
                         ap.printMessage("Devices da divisão:");
-                        ap.printDevicesDivisao(gc.getCasa(NIF_casa),divisao);
+                        ap.printDevicesDivisao(gc.getCasa(NIF_casa), divisao);
                         ap.printMessage("Escolha o id do dispositivo que quer desligar.");
                         UUID id = UUID.fromString(in.readline());
                         gc.desligarDeviceCasa(NIF_casa, id);
@@ -209,6 +189,7 @@ public class Interpretador implements InterfaceInterpretador {
                     ap.printOpInvalida();
                 }
             }
+
 
             case 3 -> {
                 ap.printMessage("Fornecedores existentes na vizinhança:");
@@ -236,7 +217,90 @@ public class Interpretador implements InterfaceInterpretador {
                 ap.printOpInvalida();
             }
         }
+    }
 
+    public void interpretadorDados () {
+        ap.printMenuDados();
+        ap.printline("Escolha a sua opção:");
+        int input = in.readInt();
+
+        switch (input) {
+            case 1 -> {
+                //casas
+            }
+            case 2 -> {
+                // ver casas na vizinhança e ver casa em particular
+            }
+            case 3 -> {
+                // ver casas na vizinhança, casa em particular e dispositivos de divisao
+
+            }
+
+            case 4 -> {
+                // ver fornecedores
+            }
+            default -> {
+                ap.printOpInvalida();
+            }
+
+        }
+    }
+
+    public void interpretadorMenuPrincipal (List<Consumer<String>> methodList, int input,LocalDate inicio, LocalDate fim, DateTimeFormatter dateFormat) {
+            while (true) {
+                ap.printMainMenu();
+                ap.printline("Escolha a sua opção:");
+                input = in.readInt();
+
+                switch (input) {
+
+                    case 1 -> {
+                        ap.printMessage("Introduz o nome do ficheiro com os dados");
+                        String file = in.readline();
+                        int i = SaveLoadState.saveDados(file,gc);
+                        if(i == 0)
+                            ap.printMessage("Dados guardados com sucesso");
+                        else
+                            ap.printMessage("Erro ao guardar dados!");
+                    }
+
+                    case 2 -> {
+                        interpretadorConsultas();
+                    }
+                    case 3 -> {
+                        interpretadorAlteracoes(methodList);
+                    }
+
+                    case 4 -> {
+                        interpretadorDados();
+                    }
+                    case 0 -> {
+                        ap.printMessage("A simulação encontra-se no dia " + inicio.format(dateFormat) + ".\n");
+                        ap.printMessage("Determine o avançar do tempo com o padrão dia/mês/ano!\n");
+                        fim = in.readLocalDate();
+                        while (fim.isBefore(inicio)) {
+                            ap.printline("A data têm de ser posterior à data atual (" + inicio.format(dateFormat) + ").");
+                            fim = in.readLocalDate();
+                        }
+                        gc.addFaturas(inicio, fim);
+                        inicio = fim;
+                        if (!methodList.isEmpty()) {
+                            for (Consumer<String> method : methodList) {
+                                method.accept(null);
+                            }
+                            ap.printMessage("As alterações foram executadas!");
+                            methodList.clear();
+                        }
+                    }
+                    case 9 -> {
+                        ap.printMessage("Programa terminado!");
+                        in.close();
+                    }
+                    default -> {
+                        ap.printOpInvalida();
+                    }
+               }
+            }
     }
 
 }

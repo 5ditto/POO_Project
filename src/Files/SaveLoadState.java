@@ -2,12 +2,13 @@ package src.Files;
 
 
 import src.GestorConsumoAPP;
+import src.Model.Casas.GestorComunidade;
 
 import java.io.*;
 
 public class SaveLoadState {
 
-    public static int saveDados(String fileName, GestorConsumoAPP gcapp) {
+    public static int saveDados(String fileName, GestorComunidade gcapp) {
         try {
             FileOutputStream file = new FileOutputStream(fileName);
             ObjectOutputStream oos = new ObjectOutputStream(file);

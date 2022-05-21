@@ -68,8 +68,24 @@ public class Apresentacao implements InterfaceApp {
     public void printMainMenu(){
         out.printMenus((new String[]{"Dar save/load do estado do programa", //1
                                      "Consultar estatísticas da vizinhança", // 2
-                                     "Fazer alterações nos dispositivos, fornecedores, casas"}),// 3
+                                     "Fazer alterações nos dispositivos, fornecedores, casas",// 3
+                                     "Visualizar dados do programa"}),
                                      "MENU PRINCIPAL",0);
+    }
+
+    public void printMenuInicial(){
+        out.printMenus((new String[]{"Carregar Dados", // 1
+                                     "Nova Simulação"}), // 2
+                                     "MENU INICIAL", 2);
+    }
+
+    public void printMenuDados(){
+        out.printMenus((new String[]{"Ver casas da visinhança",
+                                     "Ver casas da vizinhança e casa particular",
+                                     "Ver casas na vizinhança e ver casa em particular e ver faturas",
+                                     "Ver casas na vizinhança, casa em particular e dispositivos de divisao",
+                                     "Ver fornecedores"}),
+                                     "Menu Visualizar Dados",1);
     }
 
     public void printMenuTurnOffON() {
