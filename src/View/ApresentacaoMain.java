@@ -54,21 +54,17 @@ public class ApresentacaoMain {
 
     public void printMainMenu(){
         out.printMenus((new String[]{"Casa que mais gastou", //1
-                                     "Comercializador com maior volume de faturação", // 2
-                                     "Listar as faturas emitidas por um comercializador", // 3
+                                     "FOrnecedor com maior volume de faturação", // 2
+                                     "Listar as faturas emitidas por um fornecedor", // 3
                                      "Listar os maiores consumidor de energia durante um periodo", // 4
+                                     "Mudar o fornecedor de algumas casa", // 5
+                                     "Ligar/Desligar os dispositivos de alguma divisão de alguma casa", // 6
+                                     "Alterar os valores de algum fornecedor", // 7
                                      "Continuar a simulação", // 0
                                      "Terminar a simulação"}), // 9
                                      "MENU PRINCIPAL",0);
     }
 
-
-    public void printSimulationMenu(){
-        out.printMenus((new String[]{"Mudar o fornecedor de algumas casa",
-                                     "Desligar os dispositivos de alguma divisão de alguma casa",
-                                     "Alterar os valores de algum comerciante",
-                                     "Continuar a simulaçã"}), "MENU SIMULAÇÃO",1);
-    }
 
     public void printMenuTurnOffON() {
         out.printMenus((new String[]{"Ligar", "Desligar"}),"MENU LIGAR E DESLIGAR DISPOSITIVO", 1);

@@ -52,7 +52,7 @@ public class Interpretador {
 
                 }
                 case 3 -> {
-                    ap.printMessage("Escolha o comercializador para ver as faturas emitidas!");
+                    ap.printMessage("Escolha o fornecedor para ver as faturas emitidas!");
                     String fornecedor_faturas = in.readline();
                     ap.printFaturasEMitidas(gc.faturasComercializador(fornecedor_faturas));
                 }
