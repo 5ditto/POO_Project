@@ -41,8 +41,11 @@ public class Interpretador implements InterfaceInterpretador {
 
         ap.printMessage("A simulação encontra-se no dia de hoje (" + inicio.format(dateFormat) + ").");
         ap.printMessage("Determine o avançar do tempo com o padrão dia/mês/ano!");
-
         LocalDate fim = in.readLocalDate();
+        while(fim.isBefore(inicio)){
+            ap.printline("A data têm de ser posterior à data atual (" + inicio.format(dateFormat) +").");
+            fim = in.readLocalDate();
+        }
         gc.addFaturas(inicio, fim);
         inicio = fim;
 
@@ -155,6 +158,10 @@ public class Interpretador implements InterfaceInterpretador {
                     ap.printMessage("A simulação encontra-se no dia " + inicio.format(dateFormat) + ".\n");
                     ap.printMessage("Determine o avançar do tempo com o padrão dia/mês/ano!\n");
                     fim = in.readLocalDate();
+                    while(fim.isBefore(inicio)){
+                        ap.printline("A data têm de ser posterior à data atual (" + inicio.format(dateFormat) +").");
+                        fim = in.readLocalDate();
+                    }
                     gc.addFaturas(inicio, fim);
                     inicio = fim;
                     if (!methodList.isEmpty()) {
