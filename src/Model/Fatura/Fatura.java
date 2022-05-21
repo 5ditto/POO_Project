@@ -58,7 +58,7 @@ public class Fatura {
                 " | Consumo: " + consumo + "KW" +
                 " | Custos do consumo: " + custos_consumo + "€" +
                 " | Custos da instalação: " + custos_instalacao + "€" +
-                " | Comercializador: " + comercializador + "]\n";
+                " | Comercializador: " + comercializador + ']';
     }
 
     public Fatura clone(){
