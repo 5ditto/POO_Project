@@ -7,7 +7,7 @@ import java.io.*;
 
 public class SaveLoadState {
 
-    public static int guardaDados(String fileName, GestorConsumoAPP gcapp) {
+    public static int saveDados(String fileName, GestorConsumoAPP gcapp) {
         try {
             FileOutputStream file = new FileOutputStream(fileName);
             ObjectOutputStream oos = new ObjectOutputStream(file);
@@ -26,7 +26,7 @@ public class SaveLoadState {
     }
 
 
-    public static GestorConsumoAPP carregaDados(String fileName) throws IOException, ClassNotFoundException {
+    public static GestorConsumoAPP loadDados(String fileName) throws IOException, ClassNotFoundException {
         FileInputStream file = new FileInputStream(fileName);
         ObjectInputStream ois = new ObjectInputStream(file);
         GestorConsumoAPP gcapp = (GestorConsumoAPP) ois.readObject();
