@@ -57,9 +57,12 @@ public class SmartBulb extends SmartDevice{
     }
 
     public String toString(){
+        String tonalidade;
+        if (this.tonalidade == COLD) tonalidade = "COlD";
+        else if (this.tonalidade == NEUTRAL) tonalidade = "NEUTRAL";
+        else tonalidade = "WARM";
         return "SmartBulb: [" + super.toString() +
-                " | Estado: " + super.getState() +
-                " | Tonalidade"  + tonalidade +
+                " | Tonalidade: "  + tonalidade +
                 " | Dimensão: " + dimensao + "]\n";
     }
 

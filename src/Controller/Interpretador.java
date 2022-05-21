@@ -167,11 +167,11 @@ public class Interpretador implements InterfaceInterpretador {
                 if (ligar_desligar == 1) {
                     ap.printMessage("Escolha o NIF da casa!");
                     int NIF_casa = in.readInt();
+                    ap.printMessage("Divisões da casa:");
+                    ap.printDivisoes(gc.getCasa(NIF_casa));
                     ap.printMessage("Escolha a divisão!");
                     String divisao = in.readline();
                     if (divisao_device == 1) {
-                        ap.printMessage("Divisões da casa:");
-                        ap.printDivisoes(gc.getCasa(NIF_casa));
                         methodList.add(p -> gc.ligarDevicesDivisaoCasa(NIF_casa, divisao));
                         ap.printNextSimulation();
                     } else if (divisao_device == 2) {
@@ -180,7 +180,7 @@ public class Interpretador implements InterfaceInterpretador {
                         ap.printMessage("Escolha o id do dispositivo que quer ligar!");
                         UUID id = UUID.fromString(in.readline());
                         gc.ligarDeviceCasa(NIF_casa, id);
-                        ap.printNextSimulation();ap.printMessage("Devices da casa:");
+                        ap.printNextSimulation();
 
                     } else {
                         ap.printOpInvalida();

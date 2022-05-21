@@ -51,7 +51,7 @@ public class ApresentacaoMain {
     }
 
     public void printDivisoes(SmartHouse c){
-        System.out.println(c.getDivisions().values());
+        System.out.println(c.getDivisions().keySet());
     }
 
     public void printDevicesDivisao(SmartHouse c, String divisao){
