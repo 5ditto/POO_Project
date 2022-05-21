@@ -49,18 +49,26 @@ public class Apresentacao implements InterfaceApp {
     }
 
 
-    public void printMainMenu(){
+    public void printMenuConsultas(){
         out.printMenus((new String[]{"Casa que mais gastou", //1
                                      "Fornecedor com maior volume de faturação", // 2
                                      "Listar as faturas emitidas por um fornecedor", // 3
-                                     "Listar os maiores consumidor de energia durante um periodo", // 4
-                                     "Mudar o fornecedor de alguma casa", // 5
-                                     "Ligar/Desligar os dispositivos de alguma divisão de alguma casa", // 6
-                                     "Alterar os valores de algum fornecedor" // 7
-                                     }),
-                                     "MENU PRINCIPAL",0);
+                                     "Listar os maiores consumidor de energia durante um periodo"}),  // 4
+                                     "MENU CONSULTAS",1);
     }
 
+    public void printMenuAlteracoes(){
+        out.printMenus((new String[]{"Mudar o fornecedor de alguma casa", // 1
+                                     "Ligar/Desligar os dispositivos de alguma divisão de alguma casa", // 2
+                                     "Alterar os valores de algum fornecedor" }), // 3
+                                     "MENU ALTERAÇÕES",1);
+    }
+    public void printMainMenu(){
+        out.printMenus((new String[]{"Dar save/load do estado do programa", //1
+                                     "Consultar estatísticas da vizinhança", // 2
+                                     "Fazer alterações nos dispositivos, fornecedores, casas"}),// 3
+                                     "MENU PRINCIPAL",0);
+    }
 
     public void printMenuTurnOffON() {
         out.printMenus((new String[]{"Ligar", "Desligar"}),"MENU LIGAR E DESLIGAR DISPOSITIVO", 1);
