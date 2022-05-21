@@ -63,17 +63,15 @@ public class Interpretador implements InterfaceInterpretador {
             int input = in.readInt();
 
             switch (input) {
-
                 case 1 -> {
-                    ap.printMessage("Introduz o nome do ficheiro com os dados");
+                    ap.printMessage("Introduz o nome do save: ");
                     String file = in.readline();
-                    int i = SaveLoadState.saveDados(file, gc);
+                    int i = SaveLoadState.saveDados("equemano.txt", gc);
                     if (i == 0)
-                        ap.printMessage("Dados guardados com sucesso");
+                        ap.printMessage("Dados guardados com sucesso!");
                     else
                         ap.printMessage("Erro ao guardar dados!");
                 }
-
                 case 2 -> {
                     interpretadorConsultas();
                 }

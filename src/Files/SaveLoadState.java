@@ -1,14 +1,13 @@
 package src.Files;
 
 
-import src.GestorConsumoAPP;
 import src.Model.Casas.GestorComunidade;
 
 import java.io.*;
 
 public class SaveLoadState {
 
-    public static int saveDados(String fileName, GestorComunidade gc) {
+    public static int saveDados(String fileName, GestorComunidade gc) throws {
         try {
             FileOutputStream file = new FileOutputStream(fileName);
             ObjectOutputStream oos = new ObjectOutputStream(file);
