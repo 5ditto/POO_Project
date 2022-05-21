@@ -11,7 +11,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 
-public class GestorComunidade{
+public class GestorComunidade {
 
     Map<Integer, SmartHouse> casas;
     Map<String, Comercializador> comercializadores;
@@ -78,8 +78,8 @@ public class GestorComunidade{
     }
 
 
-    public void addComercializador(Comercializador c){
-        comercializadores.put(c.getNome(),c.clone());
+    public void addComercializador(Comercializador c) {
+        comercializadores.put(c.getNome(), c.clone());
     }
 
     public void addCasa(SmartHouse casa) {
@@ -132,29 +132,29 @@ public class GestorComunidade{
     }
 
 
-    public Comercializador maisFaturacao(){
+    public Comercializador maisFaturacao() {
         List<Fatura> faturas;
-        Map<String,Double> consumo = new HashMap<>();
+        Map<String, Double> consumo = new HashMap<>();
         faturas = this.casas.values().stream().map(SmartHouse::getFaturas).flatMap(ArrayList::stream).collect(Collectors.toCollection(ArrayList::new));
-        for (Fatura fatura : faturas){
+        for (Fatura fatura : faturas) {
             consumo.computeIfAbsent(fatura.getComercializador(), v -> fatura.getCustos_consumo() + fatura.getCustos_instalacao());
-            consumo.computeIfPresent(fatura.getComercializador(), (k,v) -> v + fatura.getCustos_consumo() + fatura.getCustos_instalacao());
+            consumo.computeIfPresent(fatura.getComercializador(), (k, v) -> v + fatura.getCustos_consumo() + fatura.getCustos_instalacao());
         }
 
         return
-        comercializadores.get(Collections.max(consumo.entrySet(),Map.Entry.comparingByValue()).getKey()).clone();
+                comercializadores.get(Collections.max(consumo.entrySet(), Map.Entry.comparingByValue()).getKey()).clone();
 
     }
 
-    public Double volumeFaturacao(Comercializador c){
+    public Double volumeFaturacao(Comercializador c) {
         return
-        this.casas.values()
-                .stream()
-                .map(SmartHouse::getFaturas)
-                .flatMap(ArrayList::stream)
-                .filter(f -> f.getComercializador().equals(c.getNome()))
-                .mapToDouble(f -> f.getCustos_instalacao() + f.getCustos_consumo())
-                .sum();
+                this.casas.values()
+                        .stream()
+                        .map(SmartHouse::getFaturas)
+                        .flatMap(ArrayList::stream)
+                        .filter(f -> f.getComercializador().equals(c.getNome()))
+                        .mapToDouble(f -> f.getCustos_instalacao() + f.getCustos_consumo())
+                        .sum();
     }
 
 
@@ -167,7 +167,7 @@ public class GestorComunidade{
                         .collect(Collectors.toList());
     }
 
-    public void mudarFornecedorCasa(int NIF, String comercializador){
+    public void mudarFornecedorCasa(int NIF, String comercializador) {
         this.casas.get(NIF).setFornecedor(this.comercializadores.get(comercializador).clone());
     }
 
@@ -194,22 +194,22 @@ public class GestorComunidade{
         }
     }
 
-    public void ligarDeviceCasa(int NIF, UUID id){
+    public void ligarDeviceCasa(int NIF, UUID id) {
         this.casas.get(NIF).turnOnDevice(id);
     }
 
-    public void desligarDeviceCasa(int NIF, UUID id){
+    public void desligarDeviceCasa(int NIF, UUID id) {
         this.casas.get(NIF).turnOffDevice(id);
     }
 
 
-    public Map<Double,SmartHouse> getMaxConsumidorTempo(LocalDate inicio, LocalDate fim, int consumidores){
-        Map <Double,SmartHouse> organizado = new TreeMap<>(Collections.reverseOrder());
-        for (SmartHouse c : this.casas.values()){
-            organizado.put(c.volumeFaturaEntreDatas(inicio,fim),c.clone());
+    public Map<Double, SmartHouse> getMaxConsumidorTempo(LocalDate inicio, LocalDate fim, int consumidores) {
+        Map<Double, SmartHouse> organizado = new TreeMap<>(Collections.reverseOrder());
+        for (SmartHouse c : this.casas.values()) {
+            organizado.put(c.volumeFaturaEntreDatas(inicio, fim), c.clone());
         }
-
-
+        return organizado;
+    }
 
 
 }
