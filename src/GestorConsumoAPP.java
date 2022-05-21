@@ -36,4 +36,6 @@ public class GestorConsumoAPP implements Serializable {
         }
 
     }
+
+
 }

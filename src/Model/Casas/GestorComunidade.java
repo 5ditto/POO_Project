@@ -204,7 +204,7 @@ public class GestorComunidade{
 
     public Set<SmartHouse> getMaxConsumidorTempo(LocalDate inicio, LocalDate fim, int consumidores){
         return
-        this.casas.values().stream().sorted(Comparator.comparing((SmartHouse c) -> c.volumeFaturaEntreDatas(inicio,fim)).reversed())
+        this.casas.values().stream().sorted(Comparator.comparing( c -> c.volumeFaturaEntreDatas(inicio,fim)).reversed())
                 .collect(Collectors.toCollection(TreeSet::new));
 
     }
