@@ -8,14 +8,14 @@ import src.Model.SmartDevice.SmartDevice;
 import java.time.LocalDate;
 import java.util.List;
 
-public class ApresentacaoMain implements InterfaceApp {
+public class Apresentacao implements InterfaceApp {
     private final Output out; //Imprime os outputs
-    private Apresentacao ap; // Apresentação responsável pelos outputs relacionados os resultados
+    private ApresentacaoMain ap; // Apresentação responsável pelos outputs relacionados os resultados
 
 
-    public ApresentacaoMain(){
+    public Apresentacao(){
         out = new Output();
-        ap  = new Apresentacao();
+        ap  = new ApresentacaoMain();
     }
 
     /*

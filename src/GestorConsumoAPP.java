@@ -5,7 +5,7 @@ import src.Controller.Interpretador;
 import src.Files.LinhaIncorretaException;
 import src.Files.Parser;
 import src.Model.Casas.GestorComunidade;
-import src.View.ApresentacaoMain;
+import src.View.Apresentacao;
 
 import java.io.Serializable;
 
@@ -15,7 +15,7 @@ public class GestorConsumoAPP implements Serializable {
 
         GestorComunidade gc = new GestorComunidade();   // Model
         Interpretador i;                                // Controlador
-        ApresentacaoMain a = new ApresentacaoMain();    // View
+        Apresentacao a = new Apresentacao();            // View
         Parser parser = new Parser();                   // Parser
 
 

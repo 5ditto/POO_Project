@@ -4,7 +4,7 @@ import src.Model.Casas.GestorComunidade;
 import src.Model.Comercializadores.Comercializador;
 import src.Model.Comercializadores.Comercializador1;
 import src.Model.Fatura.Fatura;
-import src.View.ApresentacaoMain;
+import src.View.Apresentacao;
 
 
 import java.io.IOException;
@@ -17,12 +17,12 @@ import java.util.function.Consumer;
 
 public class Interpretador implements InterfaceInterpretador {
     private final Input in;// Leitura de Input do utilizador
-    ApresentacaoMain ap;
+    Apresentacao ap;
     GestorComunidade gc;
     /*
         Construtor
      */
-    public Interpretador(ApresentacaoMain a, GestorComunidade g) {
+    public Interpretador(Apresentacao a, GestorComunidade g) {
         in = new Input();
         ap = a;
         gc = g;
