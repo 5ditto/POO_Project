@@ -2,9 +2,10 @@ package src.Model.Casas;
 
 import src.Model.Comercializadores.Comercializador;
 import src.Model.Comercializadores.Comercializador1;
-import src.Model.Fatura;
+import src.Model.Fatura.Fatura;
 import src.Model.SmartDevice.SmartDevice;
 
+import java.time.LocalDate;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
@@ -213,6 +214,21 @@ public class SmartHouse {
             if (randomNum == 1) s.setState(true);
             else if (randomNum == 2) s.setState(false);
         }
+    }
+
+    public List<SmartDevice> getdevicesDivision(String division){
+        List<UUID> uuids = this.divisions.get(division);
+        List<SmartDevice> devices = new ArrayList<>();
+        for (SmartDevice sd : this.devices.values()){
+            if (uuids.contains(sd.getId())) devices.add(sd.clone());
+        }
+        return devices;
+    }
+
+    public Double volumeFaturaEntreDatas(LocalDate inicio, LocalDate fim){
+        return
+        this.faturas.stream().filter(f -> f.getInicio().isBefore(inicio) && f.getFim().isAfter(fim))
+                .mapToDouble(Fatura::getConsumo).sum();
     }
 
 

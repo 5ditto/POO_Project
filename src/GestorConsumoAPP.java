@@ -5,19 +5,9 @@ import src.Controller.Interpretador;
 import src.Files.LinhaIncorretaException;
 import src.Files.Parser;
 import src.Model.Casas.GestorComunidade;
-import src.Model.Casas.SmartHouse;
-import src.Model.Comercializadores.Comercializador;
-import src.Model.Comercializadores.Comercializador1;
-import src.Model.Fatura;
 import src.View.ApresentacaoMain;
 
 import java.io.Serializable;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-import java.util.function.Consumer;
 
 public class GestorConsumoAPP implements Serializable {
 
@@ -36,6 +26,7 @@ public class GestorConsumoAPP implements Serializable {
         }
 
 
+
         try{
             i = new Interpretador(a,gc);
             i.interpretador();
@@ -44,7 +35,9 @@ public class GestorConsumoAPP implements Serializable {
             e.printStackTrace();
         }
 
+
         /*
+
         gc.ligarAleatorio();
 
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -59,9 +52,11 @@ public class GestorConsumoAPP implements Serializable {
         LocalDate fim = LocalDate.parse(dia, dateFormat);
 
 
+
         gc.addFaturas(inicio, fim);
 
         inicio = fim;
+
 
 
         while (true) {
@@ -173,8 +168,12 @@ public class GestorConsumoAPP implements Serializable {
 
         }
 
-    */
+         */
+
+
     }
+
+
 
 
 }

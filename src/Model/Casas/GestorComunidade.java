@@ -3,7 +3,7 @@ package src.Model.Casas;
 import src.Model.Comercializadores.*;
 import src.Model.Comercializadores.Comercializador1;
 import src.Model.Comercializadores.Comercializador2;
-import src.Model.Fatura;
+import src.Model.Fatura.Fatura;
 
 import java.time.LocalDate;
 import java.util.*;
@@ -141,8 +141,19 @@ public class GestorComunidade {
         }
 
         return
-        comercializadores.get(Collections.max(consumo.entrySet(),Map.Entry.comparingByValue()).getKey());
+        comercializadores.get(Collections.max(consumo.entrySet(),Map.Entry.comparingByValue()).getKey()).clone();
 
+    }
+
+    public Double volumeFaturacao(Comercializador c){
+        return
+        this.casas.values()
+                .stream()
+                .map(SmartHouse::getFaturas)
+                .flatMap(ArrayList::stream)
+                .filter(f -> f.getComercializador().equals(c.getNome()))
+                .mapToDouble(f -> f.getCustos_instalacao() + f.getCustos_consumo())
+                .sum();
     }
 
 
@@ -182,6 +193,18 @@ public class GestorComunidade {
         }
     }
 
+    public void ligarDeviceCasa(int NIF, UUID id){
+        this.casas.get(NIF).turnOnDevice(id);
+    }
+
+    public void desligarDeviceCasa(int NIF, UUID id){
+        this.casas.get(NIF).turnOffDevice(id);
+    }
+
+    public SmartHouse getMaxConsumidorTempo(LocalDate inicio, LocalDate fim){
+        return
+        this.casas.values().stream().max(Comparator.comparingDouble(c -> c.volumeFaturaEntreDatas(inicio,fim))).get().clone();
+    }
 
 
 

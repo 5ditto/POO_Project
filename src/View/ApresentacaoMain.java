@@ -1,8 +1,11 @@
 package src.View;
 
 import src.Model.Casas.SmartHouse;
-import src.Model.Fatura;
+import src.Model.Comercializadores.Comercializador;
+import src.Model.Fatura.Fatura;
+import src.Model.SmartDevice.SmartDevice;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
@@ -59,9 +62,8 @@ public class ApresentacaoMain {
                                      "Listar os maiores consumidor de energia durante um periodo", // 4
                                      "Mudar o fornecedor de algumas casa", // 5
                                      "Ligar/Desligar os dispositivos de alguma divisão de alguma casa", // 6
-                                     "Alterar os valores de algum fornecedor", // 7
-                                     "Continuar a simulação", // 0
-                                     "Terminar a simulação"}), // 9
+                                     "Alterar os valores de algum fornecedor" // 7
+                                     }),
                                      "MENU PRINCIPAL",0);
     }
 
@@ -70,15 +72,36 @@ public class ApresentacaoMain {
         out.printMenus((new String[]{"Ligar", "Desligar"}),"MENU LIGAR E DESLIGAR DISPOSITIVO", 1);
     }
 
+    public void printMenuTurnDivisionDevice() {
+        out.printMenus((new String[]{"Divisão", "Dispositivo"}),"LIGAR/DESLIGAR DIVISÃO OU DISPOSITIVO", 1);
+    }
+
     public void printMaisGastadora(SmartHouse g){
         ap.printMaisGastadora(g);
     }
 
-    public void printFaturasEMitidas(List<Fatura> faturas){
+    public void printCustosEGastos(Fatura last){
+        ap.printCustosEGastos(last);
+    }
+
+    public void printFaturasEmitidas(List<Fatura> faturas){
         ap.printFaturasEmitidas(faturas);
     }
 
-    public void clearScreen(){
+    public void printComercializadorMaisFaturacao(Comercializador c, Double volume){
+        ap.printComercializadorMaisFaturacao(c,volume);
+    }
+
+    public void printDevicesDivisao(List<SmartDevice> listSD){
+        ap.printDevicesDivisao(listSD);
+    }
+
+    public void printMaiorConsumidorTempo(SmartHouse c, LocalDate inicio, LocalDate fim){
+        ap.printMaiorConsumidorTempo(c, inicio, fim);
+    }
+
+
+        public void clearScreen(){
         Output.clearScreen();
     }
 

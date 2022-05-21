@@ -1,7 +1,6 @@
-package src.Model;
+package src.Model.Fatura;
 
 import src.Model.Casas.SmartHouse;
-import src.Model.SmartDevice.SmartDevice;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;

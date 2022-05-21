@@ -22,10 +22,7 @@ public class Comercializador1 implements Comercializador {
 
     @Override
     public String toString() {
-        return "Comercializador1{" +
-                "nome='" + nome + '\'' +
-                ", desconto=" + desconto +
-                '}';
+        return nome;
     }
 
     public Comercializador1 clone(){
