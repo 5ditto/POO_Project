@@ -57,12 +57,10 @@ public class SmartBulb extends SmartDevice{
     }
 
     public String toString(){
-        return "SmartBulb{\n" +
-                "Estado: " + super.getState() + '\n' +
-                "Tonalidade"  + tonalidade + '\n' +
-                "Dimensão: " + dimensao + '\n' +
-                super.toString() +
-                "}";
+        return "SmartBulb: [" + super.toString() +
+                " | Estado: " + super.getState() +
+                " | Tonalidade"  + tonalidade +
+                " | Dimensão: " + dimensao + "]\n";
     }
 
     public SmartBulb clone(){

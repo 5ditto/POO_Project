@@ -50,11 +50,10 @@ public class SmartCamera extends SmartDevice{
     }
 
     public String toString(){
-        return "SmartCamera{\n" +
-                "Resolução: " + resolX + "x" + resolY + '\n' +
-                "Tamanho dos ficheiros guardados : " + tamanhoFicheiros +
-                super.toString() +
-                "}";
+        return "SmartCamera [" + super.toString() +
+                " | Resolução: " + resolX + "x" + resolY +
+                " | Tamanho dos ficheiros guardados: " + tamanhoFicheiros +
+                "]\n";
     }
 
     public SmartCamera clone(){

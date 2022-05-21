@@ -54,12 +54,10 @@ public class SmartSpeaker extends SmartDevice{
     }
 
     public String toString(){
-        return "SmartSpeaker{\n"+
-                "Volume: " + volume + '\n' +
-                "Estação de Rádio Atual: " + estacaoRadio + '\n' +
-                "Marca: "+ marca + '\n' +
-                super.toString() +
-                "}";
+        return "SmartSpeaker [" + super.toString() +
+                " | Volume: " + volume +
+                " | Estação de Rádio Atual: " + estacaoRadio +
+                " | Marca: "+ marca + "]\n";
 
     }
 

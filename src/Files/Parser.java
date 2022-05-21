@@ -32,7 +32,7 @@ public class Parser {
 
 
     public void parse(GestorComunidade gc) throws LinhaIncorretaException {
-        List<String> linhas = readFile("input_files/input.txt");
+        List<String> linhas = readFile("input_files/teste.txt");
         Map<String, Comercializador> comercializadores = new HashMap<>();
         Map<Integer, SmartHouse> casas = new HashMap<>();
         String[] linhaPartida;

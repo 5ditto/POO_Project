@@ -64,15 +64,9 @@ public class SmartHouse {
     }
 
     public String toString(){
-        return "SmartHouse{\n" +
-                "Nome: " + name + '\n' +
-                "NIF: " + NIF + '\n' +
-                "Faturas " + faturas + '\n' +
-                "Comercializador " + comercializador + '\n' +
-                "Custos instalação: " + custos_instalacao + '\n' +
-                "Devices: " + devices.values() + '\n' +
-                "Divisões: " + divisions.keySet() + '\n' +
-                "}";
+        return "SmartHouse [" +
+                "Nome: " + name +
+                " | NIF: " + NIF + "]\n";
     }
 
     @Override

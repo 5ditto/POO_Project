@@ -82,6 +82,7 @@ public class GestorConsumoAPP implements Serializable {
                 switch (input) {
                     case 1 -> {
                         System.out.println("A casa que gastou mais foi: " + gc.maisGastadora());
+                        System.out.println("");
                     }
                     case 2 -> {
                         System.out.println();

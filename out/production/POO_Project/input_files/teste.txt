@@ -13,9 +13,12 @@ Fornecedor:Energia Simples
 Fornecedor:SU Electricidade
 Fornecedor:EDA
 Casa:Vicente de Carvalho Castro,365597405,Iberdrola
+<<<<<<< HEAD
 Divisao:Sala de Jantar
 SmartBulb:Warm,11,4.57
 SmartBulb:Neutral,12,4.73
+=======
+>>>>>>> refs/remotes/origin/main
 Divisao:Sala de Jantar 1
 SmartBulb:Neutral,7,9.35
 SmartCamera:(1280x720),65,3.84
@@ -25,6 +28,7 @@ SmartBulb:Neutral,20,5.87
 SmartBulb:Neutral,10,6.10
 SmartCamera:(1024x768),67,4.00
 SmartBulb:Neutral,8,0.28
+<<<<<<< HEAD
 Divisao:Quarto
 SmartBulb:Warm,9,0.19
 SmartSpeaker:35,MEGA HITS,Sony,5.54
@@ -55,3 +59,5 @@ SmartSpeaker:30,RTP Antena 1 98.3 FM,JBL,5.53
 SmartBulb:Neutral,9,0.11
 SmartBulb:Neutral,13,1.09
 SmartBulb:Neutral,17,2.76
+=======
+>>>>>>> refs/remotes/origin/main
