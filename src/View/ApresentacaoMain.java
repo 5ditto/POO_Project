@@ -9,7 +9,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
-public class ApresentacaoMain {
+public class ApresentacaoMain implements InterfaceApp {
     private final Output out; //Imprime os outputs
     private Apresentacao ap; // Apresentação responsável pelos outputs relacionados os resultados
 
@@ -34,26 +34,22 @@ public class ApresentacaoMain {
         System.out.println("Pressione Enter para começar!");
     }
 
-    /*
-        Apresenta uma mensagem
-     */
-    public void printMessage(String message){
+     public void printMessage(String message){
         out.printMessage(message);
 
-    }
-
-    public void printSHouse(SmartHouse l){}
-
-    public void printOption(Map<Integer,String> menu){
-        out.printMessage("");
-        for(Map.Entry<Integer,String> entry : menu.entrySet()){
-            System.out.println(entry.getKey()+". ");
-        }
     }
 
     public void printline(String s){
         out.printline(s);
     }
+
+    public void printOpInvalida(){
+        out.printOpInvalida();
+    }
+    public void printNextSimulation(){
+        out.printNextSimulation();
+    }
+
 
     public void printMainMenu(){
         out.printMenus((new String[]{"Casa que mais gastou", //1

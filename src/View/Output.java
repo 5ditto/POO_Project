@@ -18,6 +18,14 @@ public class Output {
         System.out.print(m);
     }
 
+    public void printOpInvalida(){
+        System.out.println("Opção não disponível!");
+    }
+
+    public void printNextSimulation(){
+        System.out.println("A alteração irá ser executada a próxima vez que correr a simulação!");
+    }
+
     public void printMenus(String []menu, String message, int type){
         int size, length = message.length();
 
