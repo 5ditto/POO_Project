@@ -201,7 +201,7 @@ public class GestorComunidade{
         this.casas.get(NIF).turnOffDevice(id);
     }
 
-
+    /*
     public Set<SmartHouse> getMaxConsumidorTempo(LocalDate inicio, LocalDate fim, int consumidores){
         return
         this.casas.values().stream().sorted(Comparator.comparing( c -> c.volumeFaturaEntreDatas(inicio,fim)).reversed())
@@ -209,7 +209,7 @@ public class GestorComunidade{
 
     }
 
-
+    */
 
 
     //  
