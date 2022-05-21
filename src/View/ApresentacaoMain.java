@@ -8,6 +8,7 @@ import src.Model.SmartDevice.SmartDevice;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class ApresentacaoMain {
     private final Output out; //Imprime os outputs
@@ -57,12 +58,12 @@ public class ApresentacaoMain {
 
     public void printMainMenu(){
         out.printMenus((new String[]{"Casa que mais gastou", //1
-                                     "FOrnecedor com maior volume de faturação", // 2
-                                     "Listar as faturas emitidas por um fornecedor", // 3
-                                     "Listar os maiores consumidor de energia durante um periodo", // 4
-                                     "Mudar o fornecedor de algumas casa", // 5
-                                     "Ligar/Desligar os dispositivos de alguma divisão de alguma casa", // 6
-                                     "Alterar os valores de algum fornecedor" // 7
+                                     "Comercializante com maior volume de faturação", // 2
+                                     "Listar as faturas emitidas por um comercializante", // 3
+                                     "Listar os maiores consumidores de energia durante um periodo", // 4
+                                     "Mudar o comercializante duma casa", // 5
+                                     "Ligar/Desligar os dispositivos duma casa", // 6
+                                     "Alterar os valores de um comercializante" // 7
                                      }),
                                      "MENU PRINCIPAL",0);
     }
@@ -96,7 +97,7 @@ public class ApresentacaoMain {
         ap.printDevicesDivisao(listSD);
     }
 
-    public void printMaiorConsumidorTempo(SmartHouse c, LocalDate inicio, LocalDate fim){
+    public void printMaiorConsumidorTempo(Set<SmartHouse> c, LocalDate inicio, LocalDate fim) {
         ap.printMaiorConsumidorTempo(c, inicio, fim);
     }
 
