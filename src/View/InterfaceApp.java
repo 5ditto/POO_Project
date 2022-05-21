@@ -1,7 +1,9 @@
 package src.View;
 
 import src.Model.Casas.SmartHouse;
+import src.Model.Fatura;
 
+import java.util.List;
 import java.util.Map;
 
 public interface InterfaceApp {
@@ -19,7 +21,11 @@ public interface InterfaceApp {
 
     public void printSimulationMenu();
 
+    public void printMenuTurnOffON();
+
     public void printMaisGastadora(SmartHouse g);
+
+    public void printFaturasEMitidas(List<Fatura> faturas);
 
     public void clearScreen();
 
