@@ -48,8 +48,7 @@ public abstract class SmartDevice {
     }
 
     public String toString(){
-        return "Id: " + id + '\n' +
-               "State: " + state + '\n';
+        return "Id:" + id + " State: " + state + '\n';
     }
 
     public abstract SmartDevice clone();

@@ -155,7 +155,7 @@ public class GestorComunidade {
                         .collect(Collectors.toList());
     }
 
-    public void mudarFornecedorCasa(int NIF, String comercializador) {
+    public void mudarFornecedorCasa(int NIF, String comercializador){
         this.casas.get(NIF).setFornecedor(this.comercializadores.get(comercializador).clone());
     }
 

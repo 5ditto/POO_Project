@@ -13,19 +13,22 @@ import src.View.ApresentacaoMain;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+import java.util.function.Consumer;
 
 public class GestorConsumoAPP implements Serializable {
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
 
-        GestorComunidade gc     = new GestorComunidade();   // Model
-        Interpretador    i;                                 // Controlador
-        ApresentacaoMain a      = new ApresentacaoMain();   // View
-        Parser           parser = new Parser();             // Parser
+        GestorComunidade gc = new GestorComunidade();   // Model
+        Interpretador i;                                 // Controlador
+        ApresentacaoMain a = new ApresentacaoMain();   // View
+        Parser parser = new Parser();             // Parser
 
 
-        try{
+        try {
             parser.parse(gc);
         } catch (LinhaIncorretaException e) {
             a.printMessage("Wrong Format for Input File");
@@ -59,125 +62,111 @@ public class GestorConsumoAPP implements Serializable {
 
         inicio = fim;
 
-        int input;
 
         while (true) {
-            System.out.println("Se desejar saber qual a casa que mais gastou pressione 1");
-            System.out.println("Se desejar saber qual o comercializador com maior volume de faturação pressione 2");
-            System.out.println("Se desejar listar as faturas emitidas por um comercializador pressione 3");
-            System.out.println("Se desejar listar os maiores consumidor de energia durante um periodo pressione 4");
-            System.out.println("Se desejar continuar a simulação pressione 0");
-            System.out.println("Se desejar terminar a simulação pressione 9");
+            List<Consumer<String>> methodList = new ArrayList<>();
+            int input = -1;
+            while (input != 0) {
+                System.out.println("Se desejar saber qual a casa que mais gastou pressione 1");
+                System.out.println("Se desejar saber qual o comercializador com maior volume de faturação pressione 2");
+                System.out.println("Se desejar listar as faturas emitidas por um comercializador pressione 3");
+                System.out.println("Se desejar listar os maiores consumidor de energia durante um periodo pressione 4");
+                System.out.println("Se desejar mudar o fornecedor de algumas casa pressione 5");
+                System.out.println("Se desejar ligar/desligar os devices de alguma divisão de alguma casa pressione 6");
+                System.out.println("Se desejar alterar os valores de algum comerciante pressione 7");
+                System.out.println("Se desejar continuar a simulação pressione 0");
+                System.out.println("Se desejar terminar a simulação pressione 9");
+                input = scanner.nextInt();
 
-            input = scanner.nextInt();
 
-            switch (input){
-                case 1 ->{
-                    System.out.println("A casa que gastou mais foi: " + gc.maisGastadora());
-                }
-                case 2 ->{
+                switch (input) {
+                    case 1 -> {
+                        System.out.println("A casa que gastou mais foi: " + gc.maisGastadora());
+                    }
+                    case 2 -> {
+                        System.out.println();
+                    }
+                    case 3 -> {
+                        System.out.println("Escolha o comercializador para ver as faturas emitidas!");
+                        String fornecedor_faturas = scanner.nextLine();
+                        System.out.println(gc.faturasComercializador(fornecedor_faturas));
+                    }
+                    case 4 -> {
 
-                }
-                case 3 ->{
-                    System.out.println("Escolha o comercializador para ver as faturas emitidas!");
-                    String fornecedor_faturas = scanner.nextLine();
-                    System.out.println(gc.faturasComercializador(fornecedor_faturas));
-                }
-                case 4 ->{
-
-                }
-                case 0 ->{
-                    int input_simul = -1;
-                    while (input_simul != 0){
-                    System.out.println("Se desejar mudar o fornecedor de algumas casa pressione 1");
-                    System.out.println("Se desejar ligar/desligar os devices de alguma divisão de alguma casa pressione 2");
-                    System.out.println("Se desejar alterar os valores de algum comerciante pressione 3");
-                    System.out.println("Se desejar continuar a simulação pressione 0");
-                    input_simul = scanner.nextInt();
-
-                    switch (input_simul) {
-                        case 1 -> {
-                            System.out.println("Escolha o NIF da casa cujo fornecedor quer mudar");
+                    }
+                    case 5 -> {
+                        System.out.println("Escolha o NIF da casa cujo fornecedor quer mudar");
+                        int NIF_casa = scanner.nextInt();
+                        scanner.nextLine();
+                        System.out.println("Escolha o novo fornecedor da casa " + NIF_casa);
+                        scanner.nextLine();
+                        String fornecedor_new = scanner.nextLine();
+                        methodList.add(p -> gc.mudarFornecedorCasa(NIF_casa, fornecedor_new));
+                    }
+                    case 6 -> {
+                        System.out.println("Pressione 1 se quiser ligar e 2 se quiser desligar");
+                        int ligar_desligar = scanner.nextInt();
+                        scanner.nextLine();
+                        if (ligar_desligar == 1) {
+                            System.out.println("Escolha o NIF da casa");
                             int NIF_casa = scanner.nextInt();
-                            System.out.println("Escolha o novo fornecedor da casa " + NIF_casa);
-                            String fornecedor_new = scanner.nextLine();
-                            gc.mudarFornecedorCasa(NIF_casa,fornecedor_new);
+                            scanner.nextLine();
+                            System.out.println("Escolha a divisão");
+                            String divisao = scanner.nextLine();
+                            methodList.add (p-> gc.ligarDevicesDivisaoCasa(NIF_casa, divisao));
                         }
-                        case 2 -> {
-                            System.out.println("Pressione 1 se quiser ligar e 2 se quiser desligar");
-                            int ligar_desligar = scanner.nextInt();
-                            if (ligar_desligar == 1){
-                                System.out.println("Escolha o NIF da casa");
-                                int NIF_casa = scanner.nextInt();
-                                System.out.println("Escolha a divisão");
-                                String divisao = scanner.nextLine();
-                                gc.ligarDevicesDivisaoCasa(NIF_casa,divisao);
-                            }
-                            if (ligar_desligar == 2){
-                                System.out.println("Escolha o NIF da casa");
-                                int NIF_casa = scanner.nextInt();
-                                System.out.println("Escolha a divisão");
-                                String divisao = scanner.nextLine();
-                                gc.desligarDevicesDivisaoCasa(NIF_casa,divisao);
-                            }
-                            else{
-                                System.out.println("Opção não disponível!");
-                            }
-                        }
-                        case 3 -> {
-                            System.out.println("Escolha comerciante para alterar valores");
-                            String comerciante = scanner.nextLine();
-                            Comercializador c;
-                            c = gc.getComercializadores().get(comerciante);
-                            if (c instanceof Comercializador1){
-                                System.out.println("Selecione novo valor para o desconto do comerciante");
-                                double desconto_new = scanner.nextDouble();
-                                gc.mudarValoresComerciante(comerciante,desconto_new,1);
-                            }
-                            else{
-                                System.out.println("Selecione valor para o maior e menor desconto");
-                                double desconto_maior_new = scanner.nextDouble();
-                                double desconto_menor_new = scanner.nextDouble();
-                                gc.mudarValoresComerciante(comerciante,desconto_maior_new,desconto_menor_new);
-                                }
-                        }
-                        case 0 -> {
-                            System.out.println("A simulação encontra-se no dia " + inicio.format(dateFormat) + ".\n Determine o avançar do tempo com o padrão dia/mês/ano!");
-                            dia = scanner.nextLine();
-                            fim = LocalDate.parse(dia, dateFormat);
-                            gc.addFaturas(inicio, fim);
-                            inicio = fim;
-                        }
-                        default -> {
-                            System.out.println("Opção inválida");
+                        else if (ligar_desligar == 2) {
+                            System.out.println("Escolha o NIF da casa");
+                            int NIF_casa = scanner.nextInt();
+                            scanner.nextLine();
+                            System.out.println("Escolha a divisão");
+                            String divisao = scanner.nextLine();
+                            methodList.add(p -> gc.desligarDevicesDivisaoCasa(NIF_casa, divisao));
+                        } else {
+                            System.out.println("Opção não disponível!");
                         }
                     }
+                    case 7 -> {
+                        System.out.println("Escolha comerciante para alterar valores");
+                        String comerciante = scanner.nextLine();
+                        Comercializador c;
+                        c = gc.getComercializadores().get(comerciante);
+                        if (c instanceof Comercializador1) {
+                            System.out.println("Selecione novo valor para o desconto do comerciante");
+                            double desconto_new = scanner.nextDouble();
+                            scanner.nextLine();
+                            methodList.add(p -> gc.mudarValoresComerciante(comerciante, desconto_new, 1));
+                        } else {
+                            System.out.println("Selecione valor para o maior e menor desconto");
+                            double desconto_maior_new = scanner.nextDouble();
+                            double desconto_menor_new = scanner.nextDouble();
+                            scanner.nextLine();
+                            methodList.add(p -> gc.mudarValoresComerciante(comerciante, desconto_maior_new, desconto_menor_new));
+                        }
+                    }
+                    case 0 -> {
+                        System.out.println("A simulação encontra-se no dia " + inicio.format(dateFormat) + ".\nDetermine o avançar do tempo com o padrão dia/mês/ano!");
+                        scanner.nextLine();
+                        dia = scanner.nextLine();
+                        fim = LocalDate.parse(dia, dateFormat);
+                        gc.addFaturas(inicio, fim);
+                        inicio = fim;
+                        for (Consumer<String> method : methodList){
+                            method.accept(null);
+                        }
+                    }
+                    case 9 -> {
+                        System.out.println("Programa terminado!");
+                        System.exit(0);
+                    }
+                    default -> {
+                        System.out.println("Opção inválida");
                     }
                 }
-
-                case 9 ->{
-                    System.out.println("Programa terminado!");
-                    System.exit(0);
-                }
-                default -> {
-                    System.out.println("Opção inválida");
-                }
-
-
             }
 
         }
 
 
-
-
-
-
-
-
-
-
     }
-
-
 }
