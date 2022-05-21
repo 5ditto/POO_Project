@@ -43,11 +43,8 @@ public class Output {
             System.out.println(i+1 + " | " + menu[i]);
         }
         if(type == 0) {
-            System.out.println("9 - Continuar Simulação");
-            System.out.println("0 - Sair");
+            System.out.println("0 - Continuar Simulação");
+            System.out.println("9 - Sair");
         }
-        else
-            System.out.println("9 - Continuar Simulação");
-
     }
 }

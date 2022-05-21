@@ -16,5 +16,11 @@ public class Input {
         return s.nextLine();
     }
 
+    public double readDouble(){
+        Scanner s = new Scanner(System.in);
+        double b = s.nextDouble();
+        s.nextDouble();
+        return b;
+    }
 
 }

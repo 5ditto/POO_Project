@@ -1,7 +1,9 @@
 package src.View;
 
 import src.Model.Casas.SmartHouse;
+import src.Model.Fatura;
 
+import java.util.List;
 import java.util.Map;
 
 public class ApresentacaoMain {
@@ -33,7 +35,6 @@ public class ApresentacaoMain {
         Apresenta uma mensagem
      */
     public void printMessage(String message){
-        Output.clearScreen();
         out.printMessage(message);
 
     }
@@ -69,8 +70,16 @@ public class ApresentacaoMain {
                                      "Continuar a simulaçã"}), "MENU SIMULAÇÃO",1);
     }
 
+    public void printMenuTurnOffON() {
+        out.printMenus((new String[]{"Ligar", "Desligar"}),"MENU LIGAR E DESLIGAR DISPOSITIVO", 1);
+    }
+
     public void printMaisGastadora(SmartHouse g){
         ap.printMaisGastadora(g);
+    }
+
+    public void printFaturasEMitidas(List<Fatura> faturas){
+        ap.printFaturasEmitidas(faturas);
     }
 
     public void clearScreen(){

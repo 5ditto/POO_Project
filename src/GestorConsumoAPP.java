@@ -23,9 +23,9 @@ public class GestorConsumoAPP implements Serializable {
     public static void main(String[] args) {
 
         GestorComunidade gc = new GestorComunidade();   // Model
-        Interpretador i;                                 // Controlador
-        ApresentacaoMain a = new ApresentacaoMain();   // View
-        Parser parser = new Parser();             // Parser
+        Interpretador i;                                // Controlador
+        ApresentacaoMain a = new ApresentacaoMain();    // View
+        Parser parser = new Parser();                   // Parser
 
 
         try {
@@ -34,16 +34,16 @@ public class GestorConsumoAPP implements Serializable {
             a.printMessage("Wrong Format for Input File");
         }
 
-        /*
+
         try{
             i = new Interpretador(a,gc);
+            i.interpretador();
         }
         catch (Exception e){
             e.printStackTrace();
         }
 
-         */
-
+        /*
         gc.ligarAleatorio();
 
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -165,8 +165,12 @@ public class GestorConsumoAPP implements Serializable {
                 }
             }
 
+
+
         }
 
-
+    */
     }
+
+
 }
