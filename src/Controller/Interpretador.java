@@ -38,6 +38,10 @@ public class Interpretador implements InterfaceInterpretador {
 
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate inicio = LocalDate.now();
+        /*
+
+         */
+
 
         ap.printMessage("A simulação encontra-se no dia de hoje (" + inicio.format(dateFormat) + ").");
         ap.printMessage("Determine o avançar do tempo com o padrão dia/mês/ano!");
@@ -55,105 +59,16 @@ public class Interpretador implements InterfaceInterpretador {
             input = in.readInt();
 
             switch (input) {
-                case 1 -> {
-                    ap.printMaisGastadora(gc.maisGastadora());
-                    Fatura last = gc.maisGastadora().getFaturas().get(gc.maisGastadora().getFaturas().size()-1);
-                    ap.printCustosEGastos(last);
-                }
+
+                case 1->{}
+
                 case 2 -> {
-                    Comercializador c = gc.maisFaturacao();
-                    ap.printComercializadorMaisFaturacao(c,gc.volumeFaturacao(c));
+                    interpretadorConsultas();
                 }
                 case 3 -> {
-                    ap.printMessage("Escolha o comercializador para ver as faturas emitidas por este!");
-                    String fornecedor_faturas = in.readline();
-                    ap.printFaturasEmitidas(gc.faturasComercializador(fornecedor_faturas));
+                    interpretadorAlteracoes(methodList);
                 }
-                case 4 -> {
-                    ap.printMessage("Escolha a data inicial da emissão das faturas!");
-                    LocalDate inicio_fatura = in.readLocalDate();
-                    ap.printMessage("Escolha a data final das emissão faturas!");
-                    LocalDate fim_fatura = in.readLocalDate();
-                    ap.printMessage("Escolha o tamanho da lista dos maiores consumidores!");
-                    int numero_consumidores = in.readInt();
-                    //ap.printMaiorConsumidorTempo(gc.getMaxConsumidorTempo(inicio_fatura,fim_fatura,numero_consumidores),inicio_fatura,fim_fatura);
-                }
-                case 5 -> {
-                    ap.printMessage("Escolha o NIF da casa cujo comercializante quer mudar!");
-                    int NIF_casa = in.readInt();
-                    ap.printMessage("Escolha o novo fornecedor da casa " + NIF_casa + '!');
-                    String fornecedor_new = in.readline();
-                    methodList.add(p -> gc.mudarFornecedorCasa(NIF_casa, fornecedor_new));
-                    ap.printNextSimulation();
-                }
-                case 6 -> {
-                    ap.printMenuTurnOffON();
-                    int ligar_desligar = in.readInt();
-                    ap.printMenuTurnDivisionDevice();
-                    int divisao_device = in.readInt();
-                    if (ligar_desligar == 1) {
-                        ap.printMessage("Escolha o NIF da casa!");
-                        int NIF_casa = in.readInt();
-                        ap.printMessage("Escolha a divisão!");
-                        String divisao = in.readline();
-                        if (divisao_device == 1) {
-                            methodList.add(p -> gc.ligarDevicesDivisaoCasa(NIF_casa, divisao));
-                            ap.printNextSimulation();
-                        }
-                        else if (divisao_device == 2){
-                            ap.printDevicesDivisao(gc.getCasa(NIF_casa).getdevicesDivision(divisao));
-                            ap.printMessage("Escolha o id do dispositivo que quer ligar!");
-                            UUID id = UUID.fromString(in.readline());
-                            gc.ligarDeviceCasa(NIF_casa,id);
-                            ap.printNextSimulation();
 
-                        }
-                        else {
-                            ap.printOpInvalida();
-                        }
-                    }
-                    else if (ligar_desligar == 2) {
-                        ap.printMessage("Escolha o NIF da casa!");
-                        int NIF_casa = in.readInt();
-                        ap.printMessage("Escolha a divisão!");
-                        String divisao = in.readline();
-                        if (divisao_device == 1) {
-                            methodList.add(p -> gc.desligarDevicesDivisaoCasa(NIF_casa, divisao));
-                            ap.printNextSimulation();
-                        }
-                        else if (divisao_device == 2){
-                            ap.printDevicesDivisao(gc.getCasa(NIF_casa).getdevicesDivision(divisao));
-                            ap.printMessage("Escolha o id do dispositivo que quer desligar.");
-                            UUID id = UUID.fromString(in.readline());
-                            gc.desligarDeviceCasa(NIF_casa,id);
-                            ap.printNextSimulation();
-                        }
-                        else {
-                            ap.printOpInvalida();
-                        }
-                    } else {
-                       ap.printOpInvalida();
-                    }
-                }
-                case 7 -> {
-                    ap.printMessage("Escolha comerciante para alterar os seus valores!");
-                    String comerciante = in.readline();
-                    Comercializador c;
-                    c = gc.getComercializadores().get(comerciante);
-                    if (c instanceof Comercializador1) {
-                        ap.printMessage("Selecione novo valor para o desconto do comerciante!");
-                        double desconto_new = in.readDouble();
-                        methodList.add(p -> gc.mudarValoresComerciante(comerciante, desconto_new, 1));
-                        ap.printNextSimulation();
-                    } else {
-                        ap.printMessage("Selecione valor para o maior desconto");
-                        double desconto_maior_new = in.readDouble();
-                        ap.printMessage("Selecione valor para o menor desconto");
-                        double desconto_menor_new = in.readDouble();
-                        methodList.add(p -> gc.mudarValoresComerciante(comerciante, desconto_maior_new, desconto_menor_new));
-                        ap.printNextSimulation();
-                    }
-                }
                 case 0 -> {
                     ap.printMessage("A simulação encontra-se no dia " + inicio.format(dateFormat) + ".\n");
                     ap.printMessage("Determine o avançar do tempo com o padrão dia/mês/ano!\n");
@@ -164,24 +79,151 @@ public class Interpretador implements InterfaceInterpretador {
                     }
                     gc.addFaturas(inicio, fim);
                     inicio = fim;
-                    if (!methodList.isEmpty()) {
-                        for (Consumer<String> method : methodList) {
-                            method.accept(null);
+                        if (!methodList.isEmpty()) {
+                            for (Consumer<String> method : methodList) {
+                                method.accept(null);
+                            }
+                            ap.printMessage("As alterações foram executadas!");
+                            methodList.clear();
                         }
-                        ap.printMessage("As alterações foram executadas!");
-                        methodList.clear();
-                    }
                 }
                 case 9 -> {
-                    ap.printMessage("Programa terminado!");
-                    in.close();
+                        ap.printMessage("Programa terminado!");
+                        in.close();
                 }
                 default -> {
-                    ap.printOpInvalida();
+                        ap.printOpInvalida();
                 }
             }
+
         }
     }
 
+    public void interpretadorConsultas(){
+        ap.printMenuConsultas();
+        ap.printline("Escolha a sua opção:");
+        int input = in.readInt();
+
+        switch (input) {
+            case 1 -> {
+                ap.printMaisGastadora(gc.maisGastadora());
+                Fatura last = gc.maisGastadora().getFaturas().get(gc.maisGastadora().getFaturas().size() - 1);
+                ap.printCustosEGastos(last);
+            }
+
+            case 2 -> {
+                Comercializador c = gc.maisFaturacao();
+                ap.printComercializadorMaisFaturacao(c,gc.volumeFaturacao(c));
+            }
+
+            case 3 -> {
+                ap.printMessage("Escolha o comercializador para ver as faturas emitidas por este!");
+                String fornecedor_faturas = in.readline();
+                ap.printFaturasEmitidas(gc.faturasComercializador(fornecedor_faturas));
+            }
+
+            case 4 -> {
+                ap.printMessage("Escolha a data inicial da emissão das faturas!");
+                LocalDate inicio_fatura = in.readLocalDate();
+                ap.printMessage("Escolha a data final das emissão faturas!");
+                LocalDate fim_fatura = in.readLocalDate();
+                ap.printMessage("Escolha o tamanho da lista dos maiores consumidores!");
+                int numero_consumidores = in.readInt();
+                //ap.printMaiorConsumidorTempo(gc.getMaxConsumidorTempo(inicio_fatura,fim_fatura,numero_consumidores),inicio_fatura,fim_fatura);
+            }
+
+            default -> {
+                ap.printOpInvalida();
+            }
+
+        }
+    }
+
+    public void interpretadorAlteracoes(List<Consumer<String>> methodList){
+        ap.printMenuAlteracoes();
+        ap.printline("Escolha a sua opção:");
+        int input = in.readInt();
+
+        switch (input) {
+            case 1 -> {
+                ap.printMessage("Escolha o NIF da casa cujo comercializante quer mudar!");
+                int NIF_casa = in.readInt();
+                ap.printMessage("Escolha o novo fornecedor da casa " + NIF_casa + '!');
+                String fornecedor_new = in.readline();
+                methodList.add(p -> gc.mudarFornecedorCasa(NIF_casa, fornecedor_new));
+                ap.printNextSimulation();
+            }
+
+            case 2 -> {
+                ap.printMenuTurnOffON();
+                int ligar_desligar = in.readInt();
+                ap.printMenuTurnDivisionDevice();
+                int divisao_device = in.readInt();
+                if (ligar_desligar == 1) {
+                    ap.printMessage("Escolha o NIF da casa!");
+                    int NIF_casa = in.readInt();
+                    ap.printMessage("Escolha a divisão!");
+                    String divisao = in.readline();
+                    if (divisao_device == 1) {
+                        methodList.add(p -> gc.ligarDevicesDivisaoCasa(NIF_casa, divisao));
+                        ap.printNextSimulation();
+                    } else if (divisao_device == 2) {
+                        ap.printDevicesDivisao(gc.getCasa(NIF_casa).getdevicesDivision(divisao));
+                        ap.printMessage("Escolha o id do dispositivo que quer ligar!");
+                        UUID id = UUID.fromString(in.readline());
+                        gc.ligarDeviceCasa(NIF_casa, id);
+                        ap.printNextSimulation();
+
+                    } else {
+                        ap.printOpInvalida();
+                    }
+                } else if (ligar_desligar == 2) {
+                    ap.printMessage("Escolha o NIF da casa!");
+                    int NIF_casa = in.readInt();
+                    ap.printMessage("Escolha a divisão!");
+                    String divisao = in.readline();
+                    if (divisao_device == 1) {
+                        methodList.add(p -> gc.desligarDevicesDivisaoCasa(NIF_casa, divisao));
+                        ap.printNextSimulation();
+                    } else if (divisao_device == 2) {
+                        ap.printDevicesDivisao(gc.getCasa(NIF_casa).getdevicesDivision(divisao));
+                        ap.printMessage("Escolha o id do dispositivo que quer desligar.");
+                        UUID id = UUID.fromString(in.readline());
+                        gc.desligarDeviceCasa(NIF_casa, id);
+                        ap.printNextSimulation();
+                    } else {
+                        ap.printOpInvalida();
+                    }
+                } else {
+                    ap.printOpInvalida();
+                }
+            }
+
+            case 3 -> {
+                ap.printMessage("Escolha comerciante para alterar os seus valores!");
+                String comerciante = in.readline();
+                Comercializador c;
+                c = gc.getComercializadores().get(comerciante);
+                if (c instanceof Comercializador1) {
+                    ap.printMessage("Selecione novo valor para o desconto do comerciante!");
+                    double desconto_new = in.readDouble();
+                    methodList.add(p -> gc.mudarValoresComerciante(comerciante, desconto_new, 1));
+                    ap.printNextSimulation();
+                } else {
+                    ap.printMessage("Selecione valor para o maior desconto");
+                    double desconto_maior_new = in.readDouble();
+                    ap.printMessage("Selecione valor para o menor desconto");
+                    double desconto_menor_new = in.readDouble();
+                    methodList.add(p -> gc.mudarValoresComerciante(comerciante, desconto_maior_new, desconto_menor_new));
+                    ap.printNextSimulation();
+                }
+            }
+
+            default -> {
+                ap.printOpInvalida();
+            }
+        }
+
+    }
 
 }

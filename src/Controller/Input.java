@@ -36,4 +36,6 @@ public class Input {
     public void close() {
         System.exit(0);
     }
+
+
 }

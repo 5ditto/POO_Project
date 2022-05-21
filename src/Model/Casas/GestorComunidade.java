@@ -11,7 +11,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 
-public class GestorComunidade {
+public class GestorComunidade{
 
     Map<Integer, SmartHouse> casas;
     Map<String, Comercializador> comercializadores;
@@ -209,13 +209,6 @@ public class GestorComunidade {
             organizado.put(c.volumeFaturaEntreDatas(inicio,fim),c.clone());
         }
 
-        return organizado;
-    }
-
-
-
-
-    //  
 
 
 
