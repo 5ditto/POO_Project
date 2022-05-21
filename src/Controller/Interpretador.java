@@ -63,7 +63,7 @@ public class Interpretador implements InterfaceInterpretador {
                 case 1 -> {
                     ap.printMessage("Introduz o nome do save: ");
                     String file = in.readline();
-                    int i = SaveLoadState.saveDados("equemano.txt", gc);
+                    int i = SaveLoadState.saveDados("equemano.txt",gc);
                     if (i == 0)
                         ap.printMessage("Dados guardados com sucesso!");
                     else
