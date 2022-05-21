@@ -2,18 +2,11 @@ package src.View;
 
 public class Output {
 
-    /*
-        Apresenta Mensagem numa linha terminando com '\n'
-        @param message  Mensagem
-     */
     public void printMessage(String message){
         System.out.println(message);
     }
 
-    /*
-        Apresenta a mensagem numa linha
-        @param m mensagem
-     */
+
     public void printline(String m){
         System.out.print(m);
     }

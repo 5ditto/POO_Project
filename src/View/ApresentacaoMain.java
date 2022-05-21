@@ -56,7 +56,7 @@ public class ApresentacaoMain implements InterfaceApp {
                                      "Fornecedor com maior volume de faturação", // 2
                                      "Listar as faturas emitidas por um fornecedor", // 3
                                      "Listar os maiores consumidor de energia durante um periodo", // 4
-                                     "Mudar o fornecedor de algumas casa", // 5
+                                     "Mudar o fornecedor de alguma casa", // 5
                                      "Ligar/Desligar os dispositivos de alguma divisão de alguma casa", // 6
                                      "Alterar os valores de algum fornecedor" // 7
                                      }),
