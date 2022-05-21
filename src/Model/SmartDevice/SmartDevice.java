@@ -1,6 +1,6 @@
 package src.Model.SmartDevice;
 
-import java.util.Objects;
+
 import java.util.UUID;
 
 public abstract class SmartDevice {

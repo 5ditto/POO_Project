@@ -20,6 +20,7 @@ public class SmartSpeaker extends SmartDevice{
 
     public SmartSpeaker(SmartSpeaker ss){
         super(ss.getId(),ss.getState());
+        setVolume(ss.getVolume());
         setEstacaoRadio(ss.getEstacaoRadio());
         setMarca(ss.getMarca());
         setConsumoDiario(ss.getConsumoDiario());
