@@ -35,8 +35,8 @@ public class SmartHouse {
     public SmartHouse(String name, int NIF, Comercializador comercializador){
         this.name = name;
         this.NIF = NIF;
-        this.faturas = new ArrayList<>();
         this.custos_instalacao = 0;
+        this.faturas = new ArrayList<>();
         this.comercializador = comercializador.clone();
         this.devices = new HashMap<>();
         this.divisions = new HashMap<>();

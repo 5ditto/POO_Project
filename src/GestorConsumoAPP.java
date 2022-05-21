@@ -8,6 +8,7 @@ import src.Model.Casas.GestorComunidade;
 import src.Model.Casas.SmartHouse;
 import src.Model.Comercializadores.Comercializador;
 import src.Model.Comercializadores.Comercializador1;
+import src.Model.Fatura;
 import src.View.ApresentacaoMain;
 
 import java.io.Serializable;
@@ -82,7 +83,9 @@ public class GestorConsumoAPP implements Serializable {
                 switch (input) {
                     case 1 -> {
                         System.out.println("A casa que gastou mais foi: " + gc.maisGastadora());
-                        System.out.println("");
+                        Fatura last = gc.maisGastadora().getFaturas().get(gc.maisGastadora().getFaturas().size()-1);
+                        System.out.println("A casa consumiu " + last.getConsumo() + " Joules e gastou " + last.getCustos_consumo() + "€ em energia" +
+                        " e na " + last.getCustos_instalacao() + "€ na instalação.");
                     }
                     case 2 -> {
                         System.out.println();

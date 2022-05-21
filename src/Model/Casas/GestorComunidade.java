@@ -127,7 +127,7 @@ public class GestorComunidade {
     public SmartHouse maisGastadora() {
         return
                 this.casas.values().stream()
-                        .max(Comparator.comparing(SmartHouse::consumoTotalCasaDiario)).get().clone();
+                        .max(Comparator.comparing(SmartHouse::custoTotalCasaDiario)).get().clone();
     }
 
 

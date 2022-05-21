@@ -92,7 +92,7 @@ public class SmartCamera extends SmartDevice{
 
 @Override
     public double consumoDiario(){
-        return tamanhoFicheiros*resolX*resolY/1000;
+        return tamanhoFicheiros*(resolX+resolY)/1500;
     }
 
 }
