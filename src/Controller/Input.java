@@ -33,4 +33,7 @@ public class Input {
         return ld;
     }
 
+    public void close() {
+        System.exit(0);
+    }
 }

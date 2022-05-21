@@ -7,40 +7,15 @@ import src.Model.SmartDevice.SmartDevice;
 
 import java.time.LocalDate;
 import java.util.List;
+<<<<<<< HEAD
 import java.util.Map;
 import java.util.Set;
+=======
+>>>>>>> 6c7e88e479ac55d27e525908f4bd8eea00b90d8d
 
 public class ApresentacaoMain {
-    private final Output out; //Imprime os outputs
-    private Apresentacao ap; // Apresentação responsável pelos outputs relacionados os resultados
 
-
-    public ApresentacaoMain(){
-        out = new Output();
-        ap  = new Apresentacao();
-    }
-
-    /*
-        Apresentação do menu de Boas-vindas
-     */
-    public void welcome(){
-        System.out.println("##########################################");
-        System.out.println("#                                        #");
-        System.out.println("#                                        #");
-        System.out.println("#     GESTÃO DE CONSUMOS ENERGÉTICOS     #");
-        System.out.println("#                                        #");
-        System.out.println("#                                        #");
-        System.out.println("##########################################");
-        System.out.println("Bem-vindo!");
-        System.out.println("Pressione Enter para começar!");
-    }
-
-    /*
-        Apresenta uma mensagem
-     */
-    public void printMessage(String message){
-        out.printMessage(message);
-
+<<<<<<< HEAD
     }
 
     public void printSHouse(SmartHouse l){}
@@ -79,24 +54,31 @@ public class ApresentacaoMain {
 
     public void printMaisGastadora(SmartHouse g){
         ap.printMaisGastadora(g);
+=======
+    public void printMaisGastadora(SmartHouse gastadora){
+        System.out.print("A casa que gastou mais foi: " + gastadora);
+>>>>>>> 6c7e88e479ac55d27e525908f4bd8eea00b90d8d
     }
 
     public void printCustosEGastos(Fatura last){
-        ap.printCustosEGastos(last);
+        System.out.println("A casa consumiu " + last.getConsumo() + " Joules e gastou " + last.getCustos_consumo() + "€ em energia" +
+                           " e na " + last.getCustos_instalacao() + "€ na instalação.");
     }
 
-    public void printFaturasEmitidas(List<Fatura> faturas){
-        ap.printFaturasEmitidas(faturas);
+    public void printFaturasEmitidas(List<Fatura> listaFaturas){
+        System.out.println(listaFaturas);
     }
 
     public void printComercializadorMaisFaturacao(Comercializador c, Double volume){
-        ap.printComercializadorMaisFaturacao(c,volume);
+        System.out.println("O fornecedor com maior volume de faturação é o " + c + " com um volume de faturação total de " + volume
+                           + "€");
     }
 
     public void printDevicesDivisao(List<SmartDevice> listSD){
-        ap.printDevicesDivisao(listSD);
+        System.out.println("Os dispositivos desta divisão são " + listSD);
     }
 
+<<<<<<< HEAD
     public void printMaiorConsumidorTempo(Set<SmartHouse> c, LocalDate inicio, LocalDate fim) {
         ap.printMaiorConsumidorTempo(c, inicio, fim);
     }
@@ -104,6 +86,10 @@ public class ApresentacaoMain {
 
         public void clearScreen(){
         Output.clearScreen();
+=======
+    public void printMaiorConsumidorTempo(SmartHouse c, LocalDate inicio, LocalDate fim){
+        System.out.println("O maior consumidor no período de tempo de " + inicio + " a " + fim + " é " + c);
+>>>>>>> 6c7e88e479ac55d27e525908f4bd8eea00b90d8d
     }
 
 }

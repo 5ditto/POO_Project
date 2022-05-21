@@ -2,28 +2,21 @@ package src.View;
 
 public class Output {
 
-    /*
-        Apresenta Mensagem numa linha terminando com '\n'
-        @param message  Mensagem
-     */
     public void printMessage(String message){
         System.out.println(message);
     }
 
-    /*
-        Apresenta a mensagem numa linha
-        @param m mensagem
-     */
+
     public void printline(String m){
         System.out.print(m);
     }
 
-    /*
-        Clear Screen
-     */
-    public static void clearScreen(){
-        System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-        System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+    public void printOpInvalida(){
+        System.out.println("Opção não disponível!");
+    }
+
+    public void printNextSimulation(){
+        System.out.println("A alteração irá ser executada a próxima vez que correr a simulação!");
     }
 
     public void printMenus(String []menu, String message, int type){

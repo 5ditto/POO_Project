@@ -6,6 +6,8 @@ import src.Model.Comercializadores.Comercializador1;
 import src.Model.Fatura.Fatura;
 import src.View.ApresentacaoMain;
 
+
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -13,7 +15,7 @@ import java.util.List;
 import java.util.UUID;
 import java.util.function.Consumer;
 
-public class Interpretador {
+public class Interpretador implements InterfaceInterpretador {
     private final Input in;// Leitura de Input do utilizador
     ApresentacaoMain ap;
     GestorComunidade gc;
@@ -26,7 +28,7 @@ public class Interpretador {
         gc = g;
     }
 
-    public void interpretador(){
+    public void interpretador() throws ClassNotFoundException, IOException{
         int input;
         List<Consumer<String>> methodList = new ArrayList<>();
         gc.ligarAleatorio();
@@ -65,9 +67,15 @@ public class Interpretador {
                     ap.printFaturasEmitidas(gc.faturasComercializador(fornecedor_faturas));
                 }
                 case 4 -> {
+<<<<<<< HEAD
                     ap.printMessage("Escolha a data inicial da emissão das faturas!");
                     LocalDate inicio_fatura = in.readLocalDate();
                     ap.printMessage("Escolha a data final das emissão faturas!");
+=======
+                    ap.printMessage("Escolha a data inicial das faturas!");
+                    LocalDate inicio_fatura = in.readLocalDate();
+                    ap.printMessage("Escolha a data final das faturas!");
+>>>>>>> 6c7e88e479ac55d27e525908f4bd8eea00b90d8d
                     LocalDate fim_fatura = in.readLocalDate();
                     ap.printMessage("Escolha o tamanho da lista dos maiores consumidores!");
                     int numero_consumidores = in.readInt();
@@ -79,7 +87,11 @@ public class Interpretador {
                     ap.printMessage("Escolha o novo fornecedor da casa " + NIF_casa + '!');
                     String fornecedor_new = in.readline();
                     methodList.add(p -> gc.mudarFornecedorCasa(NIF_casa, fornecedor_new));
+<<<<<<< HEAD
                     ap.printline("A alteração irá ser executada da próxima vez que avançar o tempo!");
+=======
+                    ap.printNextSimulation();
+>>>>>>> 6c7e88e479ac55d27e525908f4bd8eea00b90d8d
                 }
                 case 6 -> {
                     ap.printMenuTurnOffON();
@@ -93,18 +105,26 @@ public class Interpretador {
                         String divisao = in.readline();
                         if (divisao_device == 1) {
                             methodList.add(p -> gc.ligarDevicesDivisaoCasa(NIF_casa, divisao));
+<<<<<<< HEAD
                             ap.printMessage("A alteração irá ser executada da próxima vez que avançar o tempo!");
+=======
+                            ap.printNextSimulation();
+>>>>>>> 6c7e88e479ac55d27e525908f4bd8eea00b90d8d
                         }
                         else if (divisao_device == 2){
                             ap.printDevicesDivisao(gc.getCasa(NIF_casa).getdevicesDivision(divisao));
                             ap.printMessage("Escolha o id do dispositivo que quer ligar!");
                             UUID id = UUID.fromString(in.readline());
                             gc.ligarDeviceCasa(NIF_casa,id);
+<<<<<<< HEAD
                             ap.printline("A alteração irá ser executada da próxima vez que avançar o tempo!");
+=======
+                            ap.printNextSimulation();
+>>>>>>> 6c7e88e479ac55d27e525908f4bd8eea00b90d8d
 
                         }
                         else {
-                            ap.printMessage("Opção não disponível!");
+                            ap.printOpInvalida();
                         }
                     }
                     else if (ligar_desligar == 2) {
@@ -114,20 +134,28 @@ public class Interpretador {
                         String divisao = in.readline();
                         if (divisao_device == 1) {
                             methodList.add(p -> gc.desligarDevicesDivisaoCasa(NIF_casa, divisao));
+<<<<<<< HEAD
                             ap.printline("A alteração irá ser executada da próxima vez que avançar o tempo!");
+=======
+                            ap.printNextSimulation();
+>>>>>>> 6c7e88e479ac55d27e525908f4bd8eea00b90d8d
                         }
                         else if (divisao_device == 2){
                             ap.printDevicesDivisao(gc.getCasa(NIF_casa).getdevicesDivision(divisao));
                             ap.printMessage("Escolha o id do dispositivo que quer desligar.");
                             UUID id = UUID.fromString(in.readline());
                             gc.desligarDeviceCasa(NIF_casa,id);
+<<<<<<< HEAD
                             ap.printline("A alteração irá ser executada da próxima vez que avançar o tempo!");
+=======
+                            ap.printNextSimulation();
+>>>>>>> 6c7e88e479ac55d27e525908f4bd8eea00b90d8d
                         }
                         else {
-                            ap.printMessage("Opção não disponível!");
+                            ap.printOpInvalida();
                         }
                     } else {
-                       ap.printMessage("Opção não disponível!");
+                       ap.printOpInvalida();
                     }
                 }
                 case 7 -> {
@@ -139,13 +167,24 @@ public class Interpretador {
                         ap.printMessage("Selecione novo valor para o desconto do comerciante!");
                         double desconto_new = in.readDouble();
                         methodList.add(p -> gc.mudarValoresComerciante(comerciante, desconto_new, 1));
+<<<<<<< HEAD
                         ap.printline("A alteração irá ser executada da próxima vez que avançar o tempo!");
                     } else {
                         ap.printMessage("Selecione valor para o maior e menor desconto do comerciante!");
+=======
+                        ap.printNextSimulation();
+                    } else {
+                        ap.printMessage("Selecione valor para o maior desconto");
+>>>>>>> 6c7e88e479ac55d27e525908f4bd8eea00b90d8d
                         double desconto_maior_new = in.readDouble();
+                        ap.printMessage("Selecione valor para o menor desconto");
                         double desconto_menor_new = in.readDouble();
                         methodList.add(p -> gc.mudarValoresComerciante(comerciante, desconto_maior_new, desconto_menor_new));
+<<<<<<< HEAD
                         ap.printline("A alteração irá ser executada da próxima vez que avançar o tempo!");
+=======
+                        ap.printNextSimulation();
+>>>>>>> 6c7e88e479ac55d27e525908f4bd8eea00b90d8d
                     }
                 }
                 case 0 -> {
@@ -164,10 +203,10 @@ public class Interpretador {
                 }
                 case 9 -> {
                     ap.printMessage("Programa terminado!");
-                    System.exit(0);
+                    in.close();
                 }
                 default -> {
-                    ap.printline("Opção inválida");
+                    ap.printOpInvalida();
                 }
             }
         }
