@@ -7,7 +7,6 @@ import src.Model.SmartDevice.SmartDevice;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Map;
 
 public class ApresentacaoMain implements InterfaceApp {
     private final Output out; //Imprime os outputs

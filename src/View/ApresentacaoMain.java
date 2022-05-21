@@ -8,7 +8,7 @@ import src.Model.SmartDevice.SmartDevice;
 import java.time.LocalDate;
 import java.util.List;
 
-public class ApresentacaoMain {
+public class Apresentacao {
 
     public void printMaisGastadora(SmartHouse gastadora){
         System.out.print("A casa que gastou mais foi: " + gastadora);
