@@ -1,9 +1,10 @@
 package src.Model.SmartDevice;
 
 
+import java.io.Serializable;
 import java.util.UUID;
 
-public abstract class SmartDevice {
+public abstract class SmartDevice implements Serializable {
     private UUID id;
     private boolean state; // true = ligado; false = desligado
 

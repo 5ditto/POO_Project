@@ -1,6 +1,8 @@
 package src.Model.SmartDevice;
 
-public class SmartBulb extends SmartDevice{
+import java.io.Serializable;
+
+public class SmartBulb extends SmartDevice implements Serializable {
 
     private static final int COLD = 0;
     private static final int NEUTRAL = 1;

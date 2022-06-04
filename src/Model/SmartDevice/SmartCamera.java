@@ -1,6 +1,8 @@
 package src.Model.SmartDevice;
 
-public class SmartCamera extends SmartDevice{
+import java.io.Serializable;
+
+public class SmartCamera extends SmartDevice implements Serializable {
 
 
     private static final int custo_instalacao = 5;

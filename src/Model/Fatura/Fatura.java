@@ -2,10 +2,11 @@ package src.Model.Fatura;
 
 import src.Model.Casas.SmartHouse;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
-public class Fatura {
+public class Fatura implements Serializable {
 
     private LocalDate inicio, fim;
     private double consumo;

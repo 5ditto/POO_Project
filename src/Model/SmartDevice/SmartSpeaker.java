@@ -1,6 +1,8 @@
 package src.Model.SmartDevice;
 
-public class SmartSpeaker extends SmartDevice{
+import java.io.Serializable;
+
+public class SmartSpeaker extends SmartDevice implements Serializable {
 
 
     private static final int custo_instalacao = 3;

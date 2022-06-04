@@ -2,7 +2,9 @@ package src.Model.Comercializadores;
 
 import src.Model.SmartDevice.SmartDevice;
 
-public class Comercializador2 implements Comercializador {
+import java.io.Serializable;
+
+public class Comercializador2 implements Comercializador,Serializable {
 
     private String nome;
     private double descontoMenor = 1, descontoMaior = 0.75;

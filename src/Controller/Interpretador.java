@@ -34,9 +34,8 @@ public class Interpretador implements InterfaceInterpretador {
         ap.welcome();
         in.readline();
 
-        int startMenu = this.startMenu();
-        if (startMenu == -1) return;
-        if (startMenu == 1) interpretadorMenuPrincipal();
+        startMenu();
+        interpretadorMenuPrincipal();
     }
 
     public void interpretadorMenuPrincipal() {
@@ -45,7 +44,7 @@ public class Interpretador implements InterfaceInterpretador {
 
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate inicio = LocalDate.now();
-
+        gc.casa
         gc.ligarAleatorio();
         ap.printMessage("A simulação encontra-se no dia de hoje (" + inicio.format(dateFormat) + ").");
         ap.printMessage("Determine o avançar do tempo com o padrão dia/mês/ano!");
@@ -63,11 +62,11 @@ public class Interpretador implements InterfaceInterpretador {
                 case 1 -> {
                     ap.printMessage("Introduz o nome do save: ");
                     String file = in.readline();
-                    int i = SaveLoadState.saveDados("equemano.txt",gc);
+                    int i = SaveLoadState.saveDados(file,gc);
                     if (i == 0)
                         ap.printMessage("Dados guardados com sucesso!");
                     else
-                        ap.printMessage("Erro ao guardar dados!");
+                        ap.printMessage("Erro ao guardar dados! " + i);
                 }
                 case 2 -> {
                     interpretadorConsultas();
@@ -104,12 +103,12 @@ public class Interpretador implements InterfaceInterpretador {
         }
     }
 
-    private int startMenu() {
+    private void startMenu() {
         ap.printMenuInicial();
         ap.printMessage("Opção:");
         int choice = in.readInt();
         switch (choice) {
-            case 1:
+            case 1 -> {
                 ap.printMessage("Introduza o nome do save:");
                 String file_name = in.readline();
                 try {
@@ -117,15 +116,16 @@ public class Interpretador implements InterfaceInterpretador {
                 } catch (IOException | ClassNotFoundException e) {
                     e.printStackTrace();
                 }
-                return 0;
-            case 2:
+                ap.printMessage("Ficheiro lido com sucesso! Inicializando a simulação!");
+            }
+            case 2 -> {
                 ap.printMessage("Inicializando a simulação!");
-                return 1;
-            case 3:
-                return -1;
-            default:
+            }
+            case 9 -> System.exit(0);
+            default -> {
                 ap.printMessage("Opção inválida!");
-                return this.startMenu();
+                startMenu();
+            }
         }
     }
 

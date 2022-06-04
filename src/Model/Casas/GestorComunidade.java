@@ -5,12 +5,13 @@ import src.Model.Comercializadores.Comercializador1;
 import src.Model.Comercializadores.Comercializador2;
 import src.Model.Fatura.Fatura;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
 
-public class GestorComunidade {
+public class GestorComunidade implements Serializable {
 
     Map<Integer, SmartHouse> casas;
     Map<String, Comercializador> comercializadores;
@@ -208,8 +209,6 @@ public class GestorComunidade {
         Collections.reverse(consumidorSort);
         return consumidorSort;
     }
-
-
 
 
 }

@@ -5,12 +5,13 @@ import src.Model.Comercializadores.Comercializador1;
 import src.Model.Fatura.Fatura;
 import src.Model.SmartDevice.SmartDevice;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 
-public class SmartHouse {
+public class SmartHouse implements Serializable {
 
     private String name;
     private int NIF;
@@ -228,12 +229,11 @@ public class SmartHouse {
 
     public double volumeFaturaEntreDatas(LocalDate inicio, LocalDate fim){
         return
-        this.faturas.stream()
+                this.faturas.stream()
                 .filter(f -> (f.getInicio().isAfter(inicio) || f.getInicio().isEqual(inicio)) &&
                              (f.getFim().isBefore(fim) || f.getFim().isEqual(fim)))
                 .mapToDouble(Fatura::getConsumo)
                 .sum();
     }
-
 
 }

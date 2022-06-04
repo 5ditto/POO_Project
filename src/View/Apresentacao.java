@@ -81,7 +81,7 @@ public class Apresentacao implements InterfaceApp {
 
     public void printMenuDados(){
         out.printMenus((new String[]{"Ver casas da vizinhança",
-                                     "Ver casa divisões duma casar",
+                                     "Ver divisões de uma casa",
                                      "Ver dispositivos numa divisão de uma casa",
                                      "Ver faturas duma casa",
                                      "Ver casas na vizinhança, casa em particular e último consumo",

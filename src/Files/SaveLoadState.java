@@ -17,10 +17,10 @@ public class SaveLoadState {
         catch (FileNotFoundException e) {
             return 1;
         }
+
         catch (IOException e) {
             return 2;
         }
-
         return 0;
     }
 
